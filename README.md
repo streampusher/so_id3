@@ -34,9 +34,7 @@ Declare the tags on your model. Specify a string column containing the path to
 the mp3 file (can be local or remote).
 ```
 class Track < ActiveRecord::Base
-
-has_tags column: mp3_file_name, storage: :local
-
+  has_tags column: mp3_file_name, storage: :local
 end
 ```
 
@@ -58,6 +56,12 @@ which will read the tags from the file and update the database fields.
 
 ```
 > t.refresh!
+```
+
+A few validations are provided as well.
+
+```
+validates_id3_tag_presence :title, :artist
 ```
 
 ## Contributing
