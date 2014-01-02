@@ -30,6 +30,19 @@ Run the generator to get the migration needed.
 rails g so_id3:install
 ```
 
+Use the `add_id3_tags` method in your migration to add the necessary columns to
+store the tags in the database.
+
+```ruby
+class AddId3TagsToTracks < ActiveRecord::Migration
+  def self.up
+    add_i3_tags :tracks, :mp3_file_name
+  end
+end
+```
+
+This just adds simple string columns to your model like title, artist, etc.
+
 Declare the tags on your model. Specify a string column containing the path to
 the mp3 file (can be local or remote).
 ```
@@ -38,7 +51,7 @@ class Track < ActiveRecord::Base
 end
 ```
 
-This adds an 'id3_tags' method to your model.
+This adds an `id3_tags` method to your model.
 
 ```
 > t = Track.new
