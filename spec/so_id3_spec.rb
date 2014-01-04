@@ -1,8 +1,7 @@
 require 'spec_helper'
-require 'so_id3/schema'
-require 'so_id3/active_record'
+require 'so_id3'
 
-describe SoId3::ActiveRecord do
+describe SoId3 do
   let(:song){ Song.create(mp3: 'spec/support/test.mp3') }
   before :all do
     ActiveRecord::Base.establish_connection(adapter: "sqlite3",
