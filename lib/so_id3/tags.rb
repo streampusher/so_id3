@@ -24,7 +24,7 @@ module SoId3
       tags = {}
       tags[:artist] = text
       @tagger.tag(@mp3, tags)
-      @cache.artist=tag
+      @cache.artist=text
     end
     def title
       @tagger.tags(@mp3)[:title]

@@ -1,9 +1,9 @@
 require 'active_record'
-require 'rupeepeethree'
+
+require 'so_id3/tags'
 
 module SoId3
   module ActiveRecord
-    attr_accessor :column
     extend ActiveSupport::Concern
 
     included do
@@ -14,13 +14,18 @@ module SoId3
         SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_column) do
           self.send(opts[:column].to_sym)
         end
+        SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_column_prefix) do
+          self.send(opts[:column].to_s)
+        end
         include SoId3::ActiveRecord::LocalInstanceMethods
       end
     end
 
     module LocalInstanceMethods
-      def tags
-        Rupeepeethree::Tagger.tags(so_id3_column)
+      attr_accessor :tags
+      def initialize(base)
+        super
+        @tags = SoId3::Tags.new(so_id3_column, self)
       end
     end
   end
