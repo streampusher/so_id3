@@ -2,6 +2,13 @@ require 'rupeepeethree'
 
 module SoId3
   class Tags
+    VALID_TAGS = [
+      'artist',
+      'title',
+      'album',
+      'year',
+      'track'
+    ]
     attr_accessor :tagger
     attr_accessor :cache
     def initialize mp3, cache
@@ -9,31 +16,24 @@ module SoId3
       @tagger = Rupeepeethree::Tagger
       @cache = cache
     end
-    def artist
-      # if cached? grab from database else grab from tags and store in db
-      if !@cache.artist.nil?
-        @cache.artist
-      else
-        artist = @tagger.tags(@mp3).fetch(:artist)
-        @cache.artist=artist
-        artist
+    VALID_TAGS.each do |tag_name|
+      define_method tag_name do
+        # if cached? grab from database else grab from tags and store in db
+        if !@cache.send(tag_name).nil?
+          @cache.send(tag_name)
+        else
+          tag = @tagger.tags(@mp3).fetch(tag_name.to_sym)
+          @cache.send("#{tag_name}=", tag)
+          tag
+        end
       end
-    end
-    def artist=(text)
-      # write tag with tagger and store in db
-      tags = {}
-      tags[:artist] = text
-      @tagger.tag(@mp3, tags)
-      @cache.artist=text
-    end
-    def title
-      @tagger.tags(@mp3)[:title]
-    end
-    def title=(text)
-      tags = {}
-      tags[:title] = text
-      @tagger.tag(@mp3, tags)
-      @cache.title=text
+      define_method "#{tag_name}=" do |text|
+        # write tag with tagger and store in db
+        tags = {}
+        tags[tag_name.to_sym] = text
+        @tagger.tag(@mp3, tags)
+        @cache.send("#{tag_name}=".to_sym, text)
+      end
     end
   end
 end
