@@ -9,10 +9,10 @@ describe SoId3::Schema do
 
     ActiveRecord::Base.connection.create_table :songs, force: true do |t|
       t.string :mp3
-      t.add_i3_tags :mp3
+      t.add_i3_tags
     end
 
-    ["mp3_artist", "mp3_title", "mp3_album", "mp3_year", "mp3_track"].each do |t|
+    ["artist", "title", "album", "year", "track"].each do |t|
       expect(Song.column_names).to include(t)
     end
   end

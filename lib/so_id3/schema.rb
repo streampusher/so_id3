@@ -13,9 +13,9 @@ module SoId3
       ActiveRecord::ConnectionAdapters::TableDefinition.send :include, TableDefinition
     end
     module TableDefinition
-      def add_i3_tags(column_name)
+      def add_i3_tags
         COLUMNS.each_pair do |column, column_type|
-          column "#{column_name}_#{column}", column_type
+          column column, column_type
         end
       end
     end
