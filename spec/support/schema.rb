@@ -7,4 +7,11 @@ ActiveRecord::Schema.define do
 
     t.timestamps
   end
+
+  create_table :song_with_s3s, force: true do |t|
+    t.string :mp3
+    t.add_i3_tags
+
+    t.timestamps
+  end
 end

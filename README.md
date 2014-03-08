@@ -44,10 +44,19 @@ end
 This just adds simple string columns to your model like title, artist, etc.
 
 Declare the tags on your model. Specify a string column containing the path to
-the mp3 file (can be local or remote).
+the mp3 file (can be filesystem or s3).
 ```
 class Track < ActiveRecord::Base
-  has_tags column: mp3_file_name, storage: :local
+  has_tags column: mp3_file_name, storage: :filesystem
+end
+```
+
+```
+class Track < ActiveRecord::Base
+  has_tags column: mp3_file_name, storage: :s3,
+           s3_credentials: { bucket: ENV['S3_BUCKET'],
+                             access_key_id: ENV['S3_KEY'],
+                             secret_access_key: ENV['S3_SECRET'] }
 end
 ```
 
@@ -62,7 +71,7 @@ This adds an `id3_tags` method to your model.
 ```
 
 If you are dealing with big files you may want to save the tags in a background
-job.
+job, especially if the files are remote.
 
 If you edited the tags outside of rails you can force a 'refresh' of the tags,
 which will read the tags from the file and update the database fields.

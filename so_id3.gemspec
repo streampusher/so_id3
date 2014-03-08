@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SoId3::VERSION
   spec.authors       = ["Tony Miller"]
   spec.email         = ["mcfiredrill@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{add mp3 tags to your ActiveRecord models}
+  spec.summary       = %q{mp3 tags as attributes for ActiveRecord}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activerecord', '~> 3.0.0'
   spec.add_dependency 'rupeepeethree', '~> 0.0.4'
+  spec.add_dependency 'aws-sdk'
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
