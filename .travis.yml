@@ -1,0 +1,7 @@
+language: ruby
+rvm:
+- 2.0.0
+- 2.1.0
+env:
+  AWS_ACCESS_KEY_ID='wat'
+  AWS_SECRET_ACCESS_KEY='wat'
