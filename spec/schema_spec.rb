@@ -14,7 +14,7 @@ describe SoId3::Schema do
   it 'uses id3_tags schema statement' do
     ActiveRecord::Base.connection.create_table :songs, force: true do |t|
       t.string :mp3
-      t.i3_tags
+      t.id3_tags
     end
 
     Song.reset_column_information
@@ -39,7 +39,7 @@ describe SoId3::Schema do
   it 'uses remove_id3_tags' do
     ActiveRecord::Base.connection.create_table :songs, force: true do |t|
       t.string :mp3
-      t.i3_tags
+      t.id3_tags
     end
 
     ActiveRecord::Base.connection.remove_id3_tags :songs, :mp3

@@ -27,7 +27,7 @@ module SoId3
       end
     end
     module TableDefinition
-      def i3_tags
+      def id3_tags
         COLUMNS.each_pair do |column, column_type|
           column column, column_type
         end
