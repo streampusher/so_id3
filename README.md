@@ -33,7 +33,8 @@ rails g so_id3:install
 ```
 
 Use the `add_id3_tags` method in your migration to add the necessary columns to
-store the tags in the database.
+store the tags in the database. The second argument should be the string column
+that contains the path to the mp3.
 
 ```ruby
 class AddId3TagsToTracks < ActiveRecord::Migration
