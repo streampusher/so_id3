@@ -4,6 +4,8 @@
 
 associate mp3 tags with active record models
 
+# VERY BETA NO DON'T
+
 ```
 wow
    such tagged mp3
