@@ -1,6 +1,12 @@
 require 'spec_helper'
 require 'so_id3/tags'
 
+class FakeTagger
+  def self.tags(mp3)
+    {artist: 'dj nameko'}
+  end
+end
+
 describe SoId3::Tags do
   before :each do
     reset_tags
@@ -8,37 +14,27 @@ describe SoId3::Tags do
   end
   let(:mp3)  { "spec/support/test.mp3" }
   let(:cache) { double('cache') }
-  let(:tagger) { double('tagger') }
+  let(:tagger) { FakeTagger }
   let(:tags) { SoId3::Tags.new(mp3, cache, :file) }
-
-  # first read should read tags from file, then store them in the database
-  #
-  # then next read should read from database
 
   describe 'reading tags' do
     context 'when not cached in the database' do
       it 'reads from the file then stores in the database' do
-        tagger.stub(:tags)
-        tagger.tags.stub(:fetch).with(:artist) { "dj nameko" }
         tags.cache.stub(:artist){ nil }
         tags.cache.stub(:artist=)
 
-        tagger.should_receive(:tags).with(mp3)
-        tagger.tags.should_receive(:fetch).with(:artist)
         tags.cache.should_receive(:artist=).with("dj nameko")
 
-        tags.artist
+        expect(tags.artist).to eq 'dj nameko'
       end
     end
+
     context 'when cached in the database' do
-      it 'read from the database and not from the file' do
-        tagger.stub(:tags)
-        tagger.tags.stub(:fetch).with(:artist)
+      it 'reads from the database and not from the file' do
         tags.cache.stub(:artist) { "dj nameko" }
 
-        tagger.should_not_receive(:tags).with(mp3)
-        tagger.tags.should_not_receive(:fetch).with(:artist)
         tags.cache.should_receive(:artist)
+        tags.cache.should_not_receive(:artist=)
 
         tags.artist
       end
