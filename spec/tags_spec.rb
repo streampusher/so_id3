@@ -8,8 +8,8 @@ describe SoId3::Tags do
   end
   let(:mp3)  { "spec/support/test.mp3" }
   let(:cache) { double('cache') }
-  let(:tags) { SoId3::Tags.new(mp3, cache) }
   let(:tagger) { double('tagger') }
+  let(:tags) { SoId3::Tags.new(mp3, cache, :file) }
 
   # first read should read tags from file, then store them in the database
   #

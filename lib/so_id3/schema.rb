@@ -11,9 +11,23 @@ module SoId3
 
     def self.included(base)
       ActiveRecord::ConnectionAdapters::TableDefinition.send :include, TableDefinition
+      ActiveRecord::ConnectionAdapters::AbstractAdapter.send :include, Statements
+    end
+    module Statements
+      def add_id3_tags table_name, file_column_name
+        COLUMNS.each_pair do |column, column_type|
+          add_column table_name, column, column_type
+        end
+      end
+
+      def remove_id3_tags table_name, file_column_name
+        COLUMNS.each_pair do |column, column_type|
+          remove_column table_name, column
+        end
+      end
     end
     module TableDefinition
-      def add_i3_tags
+      def i3_tags
         COLUMNS.each_pair do |column, column_type|
           column column, column_type
         end
