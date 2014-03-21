@@ -19,6 +19,7 @@ module SoId3
         @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
                           secret_access_key: s3_credentials[:secret_access_key])
         @bucket = @s3.buckets.create(s3_credentials[:bucket])
+        puts "basename: #{File.basename(@mp3)}"
       else
         @mp3 = mp3
       end
@@ -49,16 +50,15 @@ module SoId3
         # write tag with tagger and store in db
         tags = {}
         tags[tag_name.to_sym] = text
+        @tagger.tag(@mp3, tags)
         if @storage == :s3
           # grab file from s3
           # store in /tmp/
           # tag
           # re-upload to s3
-          @tagger.tag(@mp3, tags)
           key = File.basename(@mp3)
+          puts "key: #{key}"
           @bucket.objects[key].write(file: @mp3, acl: :public_read)
-        else
-          @tagger.tag(@mp3, tags)
         end
         write_tag_to_cache tag_name, text
       end
@@ -66,6 +66,7 @@ module SoId3
 
     private
     def write_tag_to_cache tag_name, text
+      puts "writing #{text} to #{tag_name}"
       @cache.send("#{tag_name}=".to_sym, text)
     end
   end
