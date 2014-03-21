@@ -13,12 +13,12 @@ module SoId3
     ]
     attr_accessor :tagger
     attr_accessor :cache
-    def initialize mp3, cache, storage, s3_credentials = {}
+    def initialize mp3, cache, storage=:local, s3_credentials = {}
       if storage == :s3
-        @mp3 = open(mp3).path
         @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
                           secret_access_key: s3_credentials[:secret_access_key])
         @bucket = @s3.buckets.create(s3_credentials[:bucket])
+        @mp3 = get_file_from_s3(mp3).path
       else
         @mp3 = mp3
       end
@@ -49,16 +49,16 @@ module SoId3
         # write tag with tagger and store in db
         tags = {}
         tags[tag_name.to_sym] = text
+        @tagger.tag(@mp3, tags)
         if @storage == :s3
           # grab file from s3
           # store in /tmp/
           # tag
           # re-upload to s3
-          @tagger.tag(@mp3, tags)
           key = File.basename(@mp3)
           @bucket.objects[key].write(file: @mp3, acl: :public_read)
-        else
-          @tagger.tag(@mp3, tags)
+          # re-download?
+          @mp3 = get_file_from_s3(key)
         end
         write_tag_to_cache tag_name, text
       end
@@ -67,6 +67,17 @@ module SoId3
     private
     def write_tag_to_cache tag_name, text
       @cache.send("#{tag_name}=".to_sym, text)
+    end
+
+    def get_file_from_s3 filename
+      obj = @bucket.objects[filename]
+      # streaming download from S3 to a file on disk
+      t = Tempfile.new(filename)
+      obj.read do |chunk|
+        t.write(chunk)
+      end
+      t.rewind
+      t
     end
   end
 end
