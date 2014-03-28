@@ -1,7 +1,6 @@
 # SoId3
 
 [![Build Status](https://img.shields.io/travis/mcfiredrill/so_id3/master.svg)](https://travis-ci.org/mcfiredrill/so_id3)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mcfiredrill/so_id3/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 associate mp3 tags with active record models
 
