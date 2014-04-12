@@ -15,7 +15,7 @@ describe SoId3::Tags do
   let(:mp3)  { "spec/support/test.mp3" }
   let(:cache) { double('cache') }
   let(:tagger) { FakeTagger }
-  let(:tags) { SoId3::Tags.new(mp3, cache, :file) }
+  let(:tags) { SoId3::Tags.new(mp3, cache) }
 
   describe 'reading tags' do
     context 'when not cached in the database' do

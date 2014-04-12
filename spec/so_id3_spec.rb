@@ -11,11 +11,11 @@ describe SoId3 do
                                             database: "spec/support/so_id3.sqlite3")
     load "spec/support/schema.rb"
   end
-  before :each do
-    reset_tags
-  end
   describe "#has_tags" do
     context "with local files" do
+      before :each do
+        reset_tags
+      end
       let(:song){ Song.create(mp3: 'spec/support/test.mp3') }
       it "fetches tags" do
         expect(song.tags.artist).to eq('dj nameko')
@@ -27,6 +27,10 @@ describe SoId3 do
       end
     end
     context "with remote files" do
+      before :each do
+        reset_tags
+        reset_s3_object
+      end
       it 'works with remote files' do
         class SongWithS3 < ActiveRecord::Base
           has_tags column: :mp3, storage: :s3,
