@@ -58,7 +58,7 @@ end
 
 ```
 class Track < ActiveRecord::Base
-  has_tags column: mp3_file_name, storage: :s3,
+  has_tags column: :mp3_file_name, storage: :s3,
            s3_credentials: { bucket: ENV['S3_BUCKET'],
                              access_key_id: ENV['S3_KEY'],
                              secret_access_key: ENV['S3_SECRET'] }

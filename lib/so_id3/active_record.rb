@@ -1,5 +1,4 @@
 require 'active_record'
-
 require 'so_id3/tags'
 
 module SoId3
@@ -12,6 +11,7 @@ module SoId3
     module ClassMethods
       def has_tags(opts)
         SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_column) do
+          # self.send(opts[:column].to_sym).path
           self.send(opts[:column].to_sym)
         end
         SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_storage) do
@@ -25,10 +25,8 @@ module SoId3
     end
 
     module LocalInstanceMethods
-      attr_accessor :tags
-      def initialize(base)
-        super
-        @tags = SoId3::Tags.new(so_id3_column, self, so_id3_storage, s3_credentials)
+      def tags
+        @tags ||= SoId3::Tags.new(so_id3_column, self, so_id3_storage, s3_credentials)
       end
     end
   end

@@ -13,7 +13,7 @@ module SoId3
     ]
     attr_accessor :tagger
     attr_accessor :cache
-    def initialize mp3, cache, storage=:local, s3_credentials = {}
+    def initialize mp3, cache, storage=:filesystem, s3_credentials = {}
       if storage == :s3
         @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
                           secret_access_key: s3_credentials[:secret_access_key])
