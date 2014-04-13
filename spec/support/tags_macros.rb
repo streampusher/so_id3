@@ -8,6 +8,7 @@ module TagsMacros
   end
 
   def reset_s3_object
+    mp3 = "spec/support/test.mp3"
     s3_credentials = { bucket: ENV['S3_BUCKET'],
                       access_key_id: ENV['S3_KEY'],
                       secret_access_key: ENV['S3_SECRET'] }
