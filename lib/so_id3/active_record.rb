@@ -11,7 +11,6 @@ module SoId3
     module ClassMethods
       def has_tags(opts)
         SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_column) do
-          # self.send(opts[:column].to_sym).path
           self.send(opts[:column].to_sym)
         end
         SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_storage) do
