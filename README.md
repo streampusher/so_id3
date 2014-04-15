@@ -65,14 +65,27 @@ class Track < ActiveRecord::Base
 end
 ```
 
-This adds an `id3_tags` method to your model.
+This adds an `tags` method to your model.
 
 ```
 > t = Track.new
-> t.id3_tags.title = 'Wow cool song'
-> t.id3_tags.save
-> t.id3_tags.title
+> t.tags.title
 > 'Wow cool song'
+> t.tags.artist
+> 'dj wow'
+```
+
+However you can access the tags as normal attributes and the id3 tags in the
+file itself will be updated, its recommended you use the library this way.
+
+```
+> t = Track.find(3)
+> t.title = 'new title'
+> t.save!
+> t.title
+> 'new title'
+> t.tags.title
+> 'new title'
 ```
 
 If you are dealing with big files you may want to save the tags in a background
@@ -91,6 +104,8 @@ A few validations are provided as well.
 validates_id3_tag_presence :title, :artist
 ```
 
+This will make sure the tags are actually in the file.
+
 ## Contributing
 
 1. Fork it
@@ -98,7 +113,3 @@ validates_id3_tag_presence :title, :artist
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-
-
-
