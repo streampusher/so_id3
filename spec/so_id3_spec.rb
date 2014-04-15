@@ -24,6 +24,8 @@ describe SoId3 do
       it 'writes tags' do
         song.tags.artist = 'dj heartrider'
         expect(song.tags.artist).to eq('dj heartrider')
+        song.save!
+        expect(song.artist).to eq('dj heartrider')
       end
     end
     context "with remote files" do
@@ -44,6 +46,8 @@ describe SoId3 do
 
         song_with_remote.tags.artist = 'dj heartrider'
         expect(song_with_remote.tags.artist).to eq('dj heartrider')
+        song_with_remote.save!
+        expect(song_with_remote.artist).to eq('dj heartrider')
       end
     end
   end
