@@ -27,6 +27,15 @@ module SoId3
       def tags
         @tags ||= SoId3::Tags.new(so_id3_column, self, so_id3_storage, s3_credentials)
       end
+
+      SoId3::Tags::VALID_TAGS.each do |tag|
+        #define_method tag do
+        #  @tags.send(tag.to_sym)
+        #end
+        define_method "#{tag}=" do |text|
+          @tags.send("#{tag}=".to_sym, text)
+        end
+      end
     end
   end
 end

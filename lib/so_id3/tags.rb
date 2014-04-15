@@ -35,6 +35,7 @@ module SoId3
     end
 
     VALID_TAGS.each do |tag_name|
+
       define_method tag_name do
         # if cached? grab from database else grab from tags and store in db
         if !@cache.send(tag_name).nil?
@@ -45,6 +46,7 @@ module SoId3
           tag
         end
       end
+
       define_method "#{tag_name}=" do |text|
         # write tag with tagger and store in db
         tags = {}
@@ -62,11 +64,13 @@ module SoId3
         end
         write_tag_to_cache tag_name, text
       end
+
     end
 
     private
     def write_tag_to_cache tag_name, text
-      @cache.send("#{tag_name}=".to_sym, text)
+      @cache.send(:write_attribute, tag_name, text)
+      # maybe it would be desired to have this method trigger callbacks?
     end
 
     def get_file_from_s3 filename

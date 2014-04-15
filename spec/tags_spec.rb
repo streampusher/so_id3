@@ -21,9 +21,9 @@ describe SoId3::Tags do
     context 'when not cached in the database' do
       it 'reads from the file then stores in the database' do
         tags.cache.stub(:artist){ nil }
-        tags.cache.stub(:artist=)
+        tags.cache.stub(:write_attribute)
 
-        tags.cache.should_receive(:artist=).with("dj nameko")
+        tags.cache.should_receive(:write_attribute).with('artist', "dj nameko")
 
         expect(tags.artist).to eq 'dj nameko'
       end
@@ -49,7 +49,7 @@ describe SoId3::Tags do
       new_tags = {title: new_title }
 
       tagger.should_receive(:tag).with(mp3, new_tags)
-      cache.should_receive(:title=).with(new_title)
+      cache.should_receive(:write_attribute).with('title', new_title)
 
       tags.title=new_title
     end
