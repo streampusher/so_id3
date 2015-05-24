@@ -1,6 +1,6 @@
 require 'rupeepeethree'
 require 'open-uri'
-require 'aws'
+require 'aws-sdk'
 
 module SoId3
   class Tags
@@ -11,8 +11,10 @@ module SoId3
       'year',
       'track'
     ]
+
     attr_accessor :tagger
     attr_accessor :cache
+
     def initialize mp3, cache, storage=:filesystem, s3_credentials = {}
       if storage == :s3
         @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
@@ -38,8 +40,8 @@ module SoId3
 
       define_method tag_name do
         # if cached? grab from database else grab from tags and store in db
-        if !@cache.send(tag_name).nil?
-          @cache.send(tag_name)
+        if !@cache.send(:read_attribute, tag_name).nil?
+          @cache.send(:read_attribute, tag_name)
         else
           tag = @tagger.tags(@mp3).fetch(tag_name.to_sym)
           write_tag_to_cache tag_name, tag

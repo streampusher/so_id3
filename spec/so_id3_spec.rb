@@ -18,13 +18,12 @@ describe SoId3 do
       end
       let(:song){ Song.create(mp3: 'spec/support/test.mp3') }
       it "fetches tags" do
-        expect(song.tags.artist).to eq('dj nameko')
-        expect(song.tags.title).to eq('a cool song')
+        expect(song.artist).to eq('dj nameko')
+        expect(song.title).to eq('a cool song')
       end
       it 'writes tags' do
-        song.tags.artist = 'dj heartrider'
-        expect(song.tags.artist).to eq('dj heartrider')
-        song.save!
+        song.artist = 'dj heartrider'
+        song.reload
         expect(song.artist).to eq('dj heartrider')
       end
     end

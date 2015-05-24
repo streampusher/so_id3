@@ -20,7 +20,7 @@ describe SoId3::Tags do
   describe 'reading tags' do
     context 'when not cached in the database' do
       it 'reads from the file then stores in the database' do
-        tags.cache.stub(:artist){ nil }
+        tags.cache.stub(:read_attribute).with("artist"){ nil }
         tags.cache.stub(:write_attribute)
 
         tags.cache.should_receive(:write_attribute).with('artist', "dj nameko")
@@ -31,9 +31,9 @@ describe SoId3::Tags do
 
     context 'when cached in the database' do
       it 'reads from the database and not from the file' do
-        tags.cache.stub(:artist) { "dj nameko" }
+        tags.cache.stub(:read_attribute).with("artist"){ "dj nameko" }
 
-        tags.cache.should_receive(:artist)
+        tags.cache.should_receive(:read_attribute).with("artist")
         tags.cache.should_not_receive(:artist=)
 
         tags.artist
