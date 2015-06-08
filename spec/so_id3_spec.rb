@@ -28,10 +28,6 @@ describe SoId3 do
       end
     end
     context "with remote files" do
-      before :each do
-        reset_tags
-        reset_s3_object
-      end
       it 'works with remote files' do
         class SongWithS3 < ActiveRecord::Base
           has_tags column: :mp3, storage: :s3,
@@ -39,14 +35,18 @@ describe SoId3 do
                                      access_key_id: ENV['S3_KEY'],
                                      secret_access_key: ENV['S3_SECRET'] }
         end
-        song_with_remote = SongWithS3.create(mp3: 'test.mp3')
-        expect(song_with_remote.tags.artist).to eq('dj nameko')
-        expect(song_with_remote.tags.title).to eq('a cool song')
+        VCR.use_cassette "song_with_remote" do
+          reset_tags
+          reset_s3_object
+          song_with_remote = SongWithS3.create(mp3: 'test.mp3')
+          expect(song_with_remote.tags.artist).to eq('dj nameko')
+          expect(song_with_remote.tags.title).to eq('a cool song')
 
-        song_with_remote.tags.artist = 'dj heartrider'
-        expect(song_with_remote.tags.artist).to eq('dj heartrider')
-        song_with_remote.save!
-        expect(song_with_remote.artist).to eq('dj heartrider')
+          song_with_remote.tags.artist = 'dj heartrider'
+          expect(song_with_remote.tags.artist).to eq('dj heartrider')
+          song_with_remote.save!
+          expect(song_with_remote.artist).to eq('dj heartrider')
+        end
       end
     end
   end

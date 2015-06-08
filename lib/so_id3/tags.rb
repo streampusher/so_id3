@@ -15,14 +15,15 @@ module SoId3
     attr_accessor :tagger
     attr_accessor :cache
 
-    def initialize mp3, cache, storage=:filesystem, s3_credentials = {}
+    def initialize mp3_filename, cache, storage=:filesystem, s3_credentials = {}
       if storage == :s3
         @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
                           secret_access_key: s3_credentials[:secret_access_key])
         @bucket = @s3.buckets.create(s3_credentials[:bucket])
-        @mp3 = get_file_from_s3(mp3).path
+        @mp3_filename = mp3_filename
+        @mp3_tempfile = get_file_from_s3(mp3_filename).path
       else
-        @mp3 = mp3
+        @mp3_tempfile = mp3_filename
       end
       @tagger = Rupeepeethree::Tagger
       @cache = cache
@@ -43,7 +44,7 @@ module SoId3
         if !@cache.send(:read_attribute, tag_name).nil?
           @cache.send(:read_attribute, tag_name)
         else
-          tag = @tagger.tags(@mp3).fetch(tag_name.to_sym)
+          tag = @tagger.tags(@mp3_tempfile).fetch(tag_name.to_sym)
           write_tag_to_cache tag_name, tag
           tag
         end
@@ -53,16 +54,16 @@ module SoId3
         # write tag with tagger and store in db
         tags = {}
         tags[tag_name.to_sym] = text
-        @tagger.tag(@mp3, tags)
+        @tagger.tag(@mp3_tempfile, tags)
         if @storage == :s3
           # grab file from s3
           # store in /tmp/
           # tag
           # re-upload to s3
-          key = File.basename(@mp3)
-          @bucket.objects[key].write(file: @mp3, acl: :public_read)
+          key = File.basename(@mp3_filename)
+          @bucket.objects[key].write(file: @mp3_tempfile, acl: :public_read)
           # re-download?
-          @mp3 = get_file_from_s3(key)
+          @mp3_tempfile = get_file_from_s3(key)
         end
         write_tag_to_cache tag_name, text
       end
@@ -78,7 +79,7 @@ module SoId3
     def get_file_from_s3 filename
       obj = @bucket.objects[filename]
       # streaming download from S3 to a file on disk
-      t = Tempfile.new(filename)
+      t = Tempfile.new([File.basename(filename, ".*"), File.extname(filename)])
       obj.read do |chunk|
         t.write(chunk)
       end

@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "vcr", "~> 2.9.0"
+  spec.add_development_dependency "webmock"
 end
