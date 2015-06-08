@@ -13,14 +13,14 @@ VCR.configure do |config|
   config.hook_into :webmock # or :fakeweb
 
   config.filter_sensitive_data("<S3_KEY>") do
-    ENV['S3_KEY']
+    ENV.fetch 'S3_KEY', "x"*40
   end
 
   config.filter_sensitive_data("<S3_SECRET>") do
-    ENV['S3_SECRET']
+    ENV.fetch 'S3_SECRET', "x"*40
   end
 
-  config.define_cassette_placeholder("<S3_BUCKET>") do
-    ENV['S3_BUCKET']
+  config.filter_sensitive_data("<S3_BUCKET>") do
+    ENV.fetch 'S3_BUCKET', "x"*40
   end
 end
