@@ -14,13 +14,13 @@ module SoId3
       ActiveRecord::ConnectionAdapters::AbstractAdapter.send :include, Statements
     end
     module Statements
-      def add_id3_tags table_name, file_column_name
+      def add_id3_tags table_name
         COLUMNS.each_pair do |column, column_type|
           add_column table_name, column, column_type
         end
       end
 
-      def remove_id3_tags table_name, file_column_name
+      def remove_id3_tags table_name
         COLUMNS.each_pair do |column, column_type|
           remove_column table_name, column
         end
