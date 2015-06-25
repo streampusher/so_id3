@@ -1,0 +1,15 @@
+class <%= migration_class_name %> < ActiveRecord::Migration
+  def self.up
+    change_table :<%= table_name %> do |t|
+<% mp3_file_names.each do |mp3_file_name| -%>
+      t.id3_tags :<%= mp3_file_name %>
+<% end -%>
+    end
+  end
+
+  def self.down
+<% mp3_file_names.each do |mp3_file_name| -%>
+    remove_id3_tags :<%= table_name %>, :<%= mp3_file_name %>
+<% end -%>
+  end
+end

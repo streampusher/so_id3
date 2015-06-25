@@ -41,7 +41,7 @@ that contains the full path to the mp3.
 ```ruby
 class AddId3TagsToTracks < ActiveRecord::Migration
   def self.up
-    add_i3_tags :tracks, :mp3_file_name
+    add_id3_tags :tracks, :mp3_file_name
   end
 end
 ```
