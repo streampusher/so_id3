@@ -10,6 +10,7 @@ module SoId3
                track: :integer}
 
     def self.included(base)
+      ActiveRecord::ConnectionAdapters::Table.send :include, TableDefinition
       ActiveRecord::ConnectionAdapters::TableDefinition.send :include, TableDefinition
       ActiveRecord::ConnectionAdapters::AbstractAdapter.send :include, Statements
     end
