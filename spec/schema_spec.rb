@@ -28,7 +28,7 @@ describe SoId3::Schema do
       t.string :mp3
     end
 
-    ActiveRecord::Base.connection.add_id3_tags :songs, :mp3
+    ActiveRecord::Base.connection.add_id3_tags :songs
 
     Song.reset_column_information
 
@@ -42,7 +42,7 @@ describe SoId3::Schema do
       t.id3_tags
     end
 
-    ActiveRecord::Base.connection.remove_id3_tags :songs, :mp3
+    ActiveRecord::Base.connection.remove_id3_tags :songs
 
     Song.reset_column_information
 
