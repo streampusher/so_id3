@@ -23,7 +23,7 @@ describe SoId3::Tags do
         tags.cache.stub(:read_attribute).with("artist"){ nil }
         tags.cache.stub(:write_attribute)
 
-        tags.cache.should_receive(:write_attribute).with('artist', "dj nameko")
+        tags.cache.should_receive(:update_attribute).with('artist', "dj nameko")
 
         expect(tags.artist).to eq 'dj nameko'
       end
@@ -49,7 +49,7 @@ describe SoId3::Tags do
       new_tags = {title: new_title }
 
       tagger.should_receive(:tag).with(mp3, new_tags)
-      cache.should_receive(:write_attribute).with('title', new_title)
+      cache.should_receive(:update_attribute).with('title', new_title)
 
       tags.title=new_title
     end
