@@ -72,7 +72,7 @@ module SoId3
 
     private
     def write_tag_to_cache tag_name, text
-      @cache.send(:update_attribute, tag_name, text)
+      @cache.send(:write_attribute, tag_name, text)
       # maybe it would be desired to have this method trigger callbacks?
     end
 
@@ -80,7 +80,6 @@ module SoId3
       obj = @bucket.objects[filename]
       # streaming download from S3 to a file on disk
       t = Tempfile.new([File.basename(filename, ".*"), File.extname(filename)])
-      t.binmode
       obj.read do |chunk|
         t.write(chunk)
       end
