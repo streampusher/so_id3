@@ -21,7 +21,7 @@ module SoId3
                           secret_access_key: s3_credentials[:secret_access_key])
         @bucket = @s3.buckets.create(s3_credentials[:bucket])
         @mp3_filename = mp3_filename
-        @mp3_tempfile = get_file_from_s3(mp3_filename).path
+        @mp3_tempfile = get_file_from_s3(mp3_filename)
       else
         @mp3_tempfile = mp3_filename
       end
@@ -90,7 +90,7 @@ module SoId3
         t.write(chunk)
       end
       t.rewind
-      t
+      t.path
     end
   end
 end
