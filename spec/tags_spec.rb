@@ -24,6 +24,7 @@ describe SoId3::Tags do
         tags.cache.stub(:write_attribute)
 
         tags.cache.should_receive(:write_attribute).with('artist', "dj nameko")
+        tags.cache.should_receive(:save!)
 
         expect(tags.artist).to eq 'dj nameko'
       end

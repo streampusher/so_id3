@@ -39,12 +39,12 @@ describe SoId3 do
           reset_tags
           reset_s3_object
           song_with_remote = SongWithS3.create(mp3: 'test.mp3')
-          expect(song_with_remote.tags.artist).to eq('dj nameko')
-          expect(song_with_remote.tags.title).to eq('a cool song')
+          expect(song_with_remote.artist).to eq('dj nameko')
+          expect(song_with_remote.title).to eq('a cool song')
 
-          song_with_remote.tags.artist = 'dj heartrider'
-          expect(song_with_remote.tags.artist).to eq('dj heartrider')
+          song_with_remote.artist = 'dj heartrider'
           song_with_remote.save!
+          song_with_remote.reload
           expect(song_with_remote.artist).to eq('dj heartrider')
         end
       end

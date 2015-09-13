@@ -45,7 +45,7 @@ module SoId3
           @cache.send(:read_attribute, tag_name)
         else
           tag = @tagger.tags(@mp3_tempfile).fetch(tag_name.to_sym)
-          write_tag_to_cache tag_name, tag
+          write_tag_to_cache_and_save tag_name, tag
           tag
         end
       end
@@ -73,6 +73,11 @@ module SoId3
     private
     def write_tag_to_cache tag_name, text
       @cache.send(:write_attribute, tag_name, text)
+    end
+
+    def write_tag_to_cache_and_save tag_name, text
+      @cache.send(:write_attribute, tag_name, text)
+      @cache.send(:save!)
       # maybe it would be desired to have this method trigger callbacks?
     end
 
@@ -80,6 +85,7 @@ module SoId3
       obj = @bucket.objects[filename]
       # streaming download from S3 to a file on disk
       t = Tempfile.new([File.basename(filename, ".*"), File.extname(filename)])
+      t.binmode
       obj.read do |chunk|
         t.write(chunk)
       end
