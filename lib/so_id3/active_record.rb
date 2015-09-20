@@ -1,5 +1,6 @@
 require 'active_record'
 require 'so_id3/tags'
+require "so_id3/background_jobs"
 
 module SoId3
   module ActiveRecord
@@ -21,21 +22,27 @@ module SoId3
         end
         include SoId3::ActiveRecord::LocalInstanceMethods
       end
+
+      def after_tags_synced *methods
+        SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :after_tags_synced_callbacks) do
+          methods.to_a
+        end
+      end
     end
 
     module LocalInstanceMethods
-      attr_reader :tags
-      def tags
-        @tags ||= SoId3::Tags.new(so_id3_column, self, so_id3_storage, s3_credentials)
+      attr_reader :tags, :after_tags_synced_callbacks
+
+      def update_tags_in_background
+        ::SoId3::Jobs::UpdateTagsJob.perform_later self
       end
 
-      SoId3::Tags::VALID_TAGS.each do |tag|
-        define_method tag do
-          tags.send(tag.to_sym)
-        end
-        define_method "#{tag}=" do |text|
-          tags.send("#{tag}=".to_sym, text)
-        end
+      def sync_tags_in_background
+        ::SoId3::Jobs::SyncTagsJob.perform_later self
+      end
+
+      def tags
+        @tags ||= SoId3::Tags.new(so_id3_column, self, so_id3_storage, s3_credentials)
       end
     end
   end

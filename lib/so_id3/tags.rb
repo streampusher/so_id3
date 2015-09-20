@@ -16,61 +16,53 @@ module SoId3
     attr_accessor :cache
 
     def initialize mp3_filename, cache, storage=:filesystem, s3_credentials = {}
-      if storage == :s3
-        @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
-                          secret_access_key: s3_credentials[:secret_access_key])
-        @bucket = @s3.buckets.create(s3_credentials[:bucket])
-        @mp3_filename = mp3_filename
-        @mp3_tempfile = get_file_from_s3(mp3_filename)
-      else
-        @mp3_tempfile = mp3_filename
-      end
+      @mp3_filename = mp3_filename
       @tagger = Rupeepeethree::Tagger
       @cache = cache
       @storage = storage.to_sym
+      @s3_credentials = s3_credentials
     end
 
-    # accepts a hash of tag values
-    #
-    # useful for updating tags all at once in a background process
-    def update_tags(tags)
-
-    end
-
-    VALID_TAGS.each do |tag_name|
-
-      define_method tag_name do
-        # if cached? grab from database else grab from tags and store in db
-        if !@cache.send(:read_attribute, tag_name).nil?
-          @cache.send(:read_attribute, tag_name)
-        else
-          tag = @tagger.tags(@mp3_tempfile).fetch(tag_name.to_sym)
-          write_tag_to_cache_and_save tag_name, tag
-          tag
-        end
+    # sync_tags
+    # file <=> db
+    def sync_tags_from_file_to_db
+      @mp3_tempfile = get_tempfile
+      VALID_TAGS.each do |tag_name|
+        tag = @tagger.tags(@mp3_tempfile).fetch(tag_name.to_sym, nil)
+        @cache.send(:write_attribute, tag_name, tag)
       end
+      @cache.send(:save!)
+    end
 
-      define_method "#{tag_name}=" do |text|
-        # write tag with tagger and store in db
-        tags = {}
+    # update_tags
+    # db <=> file
+    def sync_tags_from_db_to_file
+      @mp3_tempfile = get_tempfile
+      tags = {}
+      VALID_TAGS.each do |tag_name|
+        text = @cache.send(:read_attribute, tag_name)
         tags[tag_name.to_sym] = text
-        @tagger.tag(@mp3_tempfile, tags)
-        if @storage == :s3
-          # grab file from s3
-          # store in /tmp/
-          # tag
-          # re-upload to s3
-          key = File.basename(@mp3_filename)
-          @bucket.objects[key].write(file: @mp3_tempfile, acl: :public_read)
-          # re-download?
-          @mp3_tempfile = get_file_from_s3(key)
-        end
-        write_tag_to_cache tag_name, text
       end
-
+      @tagger.tag(@mp3_tempfile, tags)
+      if @storage == :s3
+        write_file_to_s3
+      end
     end
 
     private
+
+    def get_tempfile
+      if @storage == :s3
+        @s3 = AWS::S3.new(access_key_id: @s3_credentials[:access_key_id],
+                          secret_access_key: @s3_credentials[:secret_access_key])
+        @bucket = @s3.buckets.create(@s3_credentials[:bucket])
+        @mp3_tempfile = get_file_from_s3(@mp3_filename)
+      else
+        @mp3_tempfile = @mp3_filename
+      end
+      @mp3_tempfile
+    end
+
     def write_tag_to_cache tag_name, text
       @cache.send(:write_attribute, tag_name, text)
     end
@@ -79,6 +71,11 @@ module SoId3
       @cache.send(:write_attribute, tag_name, text)
       @cache.send(:save!)
       # maybe it would be desired to have this method trigger callbacks?
+    end
+
+    def write_file_to_s3
+      key = File.basename(@mp3_filename)
+      @bucket.objects[key].write(file: @mp3_tempfile, acl: :public_read)
     end
 
     def get_file_from_s3 filename
