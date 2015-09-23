@@ -78,8 +78,12 @@ module SoId3
       @bucket.objects[key].write(file: @mp3_tempfile, acl: :public_read)
     end
 
+    def clean_filename_for_s3_key filename
+      filename.gsub(/\+/, ' ')
+    end
+
     def get_file_from_s3 filename
-      obj = @bucket.objects[filename]
+      obj = @bucket.objects[clean_filename_for_s3_key(filename)]
       # streaming download from S3 to a file on disk
       t = Tempfile.new([File.basename(filename, ".*"), File.extname(filename)])
       t.binmode
