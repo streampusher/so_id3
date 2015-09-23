@@ -79,7 +79,7 @@ module SoId3
     end
 
     def clean_filename_for_s3_key filename
-      filename.gsub(/\+/, ' ')
+      URI.unescape(filename.gsub(/\+/, ' '))
     end
 
     def get_file_from_s3 filename
