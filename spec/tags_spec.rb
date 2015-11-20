@@ -2,8 +2,16 @@ require 'spec_helper'
 require 'so_id3/tags'
 
 class FakeTagger
-  def self.tags(mp3)
-    {artist: 'dj nameko'}
+  def tags(mp3)
+    {
+      artist: 'dj nameko',
+      title: 'a cool song',
+      album: 'hey',
+      year: '0',
+      track: '3'
+    }
+  end
+  def tag(file, tags)
   end
 end
 
@@ -14,45 +22,30 @@ describe SoId3::Tags do
   end
   let(:mp3)  { "spec/support/test.mp3" }
   let(:cache) { double('cache') }
-  let(:tagger) { FakeTagger }
+  let(:tagger) { FakeTagger.new }
   let(:tags) { SoId3::Tags.new(mp3, cache) }
 
-  describe 'reading tags' do
-    context 'when not cached in the database' do
-      it 'reads from the file then stores in the database' do
-        tags.cache.stub(:read_attribute).with("artist"){ nil }
-        tags.cache.stub(:write_attribute)
-
-        tags.cache.should_receive(:write_attribute).with('artist', "dj nameko")
-        tags.cache.should_receive(:save!)
-
-        expect(tags.artist).to eq 'dj nameko'
+  describe 'SoId3::Tags' do
+    describe "sync_tags_from_file_to_db" do
+      it "saves tags from the file to the database" do
+        expect(cache).to receive(:write_attribute).with("artist", "dj nameko")
+        expect(cache).to receive(:write_attribute).with("title", "a cool song")
+        expect(cache).to receive(:write_attribute).with("album", "hey")
+        expect(cache).to receive(:write_attribute).with("year", "0")
+        expect(cache).to receive(:write_attribute).with("track", "3")
+        expect(cache).to receive(:save!)
+        tags.sync_tags_from_file_to_db
       end
     end
-
-    context 'when cached in the database' do
-      it 'reads from the database and not from the file' do
-        tags.cache.stub(:read_attribute).with("artist"){ "dj nameko" }
-
-        tags.cache.should_receive(:read_attribute).with("artist")
-        tags.cache.should_not_receive(:artist=)
-
-        tags.artist
+    describe "sync_tags_from_db_to_file" do
+      it "saves tags from the db to the file" do
+        expect(cache).to receive(:read_attribute).with("artist")
+        expect(cache).to receive(:read_attribute).with("title")
+        expect(cache).to receive(:read_attribute).with("album")
+        expect(cache).to receive(:read_attribute).with("year")
+        expect(cache).to receive(:read_attribute).with("track")
+        tags.sync_tags_from_db_to_file
       end
-    end
-  end
-
-  describe 'writing tags' do
-    it 'writes the tag with the tagger and stores the tag in the cache' do
-      tagger.stub(:tag)
-
-      new_title = 'cool new tune'
-      new_tags = {title: new_title }
-
-      tagger.should_receive(:tag).with(mp3, new_tags)
-      cache.should_receive(:write_attribute).with('title', new_title)
-
-      tags.title=new_title
     end
   end
 end
