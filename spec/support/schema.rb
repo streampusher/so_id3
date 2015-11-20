@@ -5,13 +5,13 @@ ActiveRecord::Schema.define do
     t.string :mp3
     t.id3_tags
 
-    t.timestamps
+    t.timestamps null: false
   end
 
   create_table :song_with_s3s, force: true do |t|
     t.string :mp3
     t.id3_tags
 
-    t.timestamps
+    t.timestamps null: false
   end
 end
