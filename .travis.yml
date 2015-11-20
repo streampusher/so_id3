@@ -7,6 +7,6 @@ rvm:
 - 2.1.0
 - 2.2.0
 env:
-  S3_BUCKET='xxxxxxxxxxxxxxxxx'
+  S3_BUCKET='so_id3_test_bucket'
   S3_SECRET='xxxxxxxxxxxxxxxxx'
   S3_KEY='xxxxxxxxxxxxxxxxx'
