@@ -1,5 +1,8 @@
-before_install: sudo apt-get install libtag1-dev -y
-language: ruby
+addons:
+  apt:
+    packages:
+    - libtag1-dev
+sudo: false
 language: ruby
 rvm:
 - 2.0.0
