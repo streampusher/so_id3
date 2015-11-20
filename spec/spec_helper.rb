@@ -1,5 +1,7 @@
 require 'rspec'
 require 'vcr'
+require 'dotenv'
+Dotenv.load
 
 require './spec/support/tags_macros.rb'
 
