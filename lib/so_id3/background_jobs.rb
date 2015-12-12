@@ -7,8 +7,8 @@ module SoId3
     extend ActiveSupport::Concern
 
     included do
-      after_save :update_tags_in_background
-      after_create :sync_tags_in_background
+      after_commit :update_tags_in_background, on: :update
+      after_commit :sync_tags_in_background, on: :create
     end
   end
 end
