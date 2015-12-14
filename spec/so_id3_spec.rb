@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'active_job'
 require 'so_id3'
 
 describe SoId3 do
@@ -6,6 +7,8 @@ describe SoId3 do
     ActiveRecord::Base.establish_connection(adapter: "sqlite3",
                                             database: "spec/support/so_id3.sqlite3")
     load "spec/support/schema.rb"
+    ActiveRecord::Base.raise_in_transactional_callbacks = true
+    ActiveJob::Base.queue_adapter = :inline
   end
   describe "#has_tags" do
     class Song < ActiveRecord::Base
@@ -48,6 +51,10 @@ describe SoId3 do
           include SoId3::BackgroundJobs
           include GlobalID::Identification
           GlobalID.app="soid3-test"
+
+          def mp3_url
+            "https://s3.amazonaws.com/#{ENV['S3_BUCKET']}/#{mp3}"
+          end
         end
         VCR.use_cassette "song_with_remote" do
           reset_tags
@@ -61,6 +68,45 @@ describe SoId3 do
           song_with_remote.save!
           song_with_remote.reload
           expect(song_with_remote.artist).to eq('dj heartrider')
+          downloaded_mp3 = download_mp3_tempfile song_with_remote.mp3_url
+          expect(Rupeepeethree::Tagger.tags(downloaded_mp3.path).fetch(:artist)).to eq('dj heartrider')
+        end
+      end
+      it "handles filenames with escaped characters" do
+        class SongWithS3 < ActiveRecord::Base
+          has_tags column: :mp3, storage: :s3,
+                   s3_credentials: { bucket: ENV['S3_BUCKET'],
+                                     access_key_id: ENV['S3_KEY'],
+                                     secret_access_key: ENV['S3_SECRET'] }
+          include SoId3::BackgroundJobs
+          include GlobalID::Identification
+          GlobalID.app="soid3-test"
+
+          def mp3_url
+            "https://s3.amazonaws.com/#{ENV['S3_BUCKET']}/#{mp3}"
+          end
+        end
+        VCR.use_cassette "song_with_remote_with_special_characters" do
+          reset_tags
+          reset_s3_object "spec/support/the cowbell wau with spaces.mp3"
+          song_with_remote = SongWithS3.create(mp3: 'the cowbell wau with spaces.mp3')
+          song_with_remote.reload
+          expect(song_with_remote.artist).to eq('dj nameko')
+          expect(song_with_remote.title).to eq('a cool song')
+
+          song_with_remote.artist = 'dj heartrider'
+          song_with_remote.save!
+          song_with_remote.reload
+          expect(song_with_remote.artist).to eq('dj heartrider')
+          downloaded_mp3 = download_mp3_tempfile song_with_remote.mp3_url
+          expect(Rupeepeethree::Tagger.tags(downloaded_mp3.path).fetch(:artist)).to eq('dj heartrider')
+
+          song_with_remote.artist = 'dj dingus'
+          song_with_remote.save!
+          song_with_remote.reload
+          expect(song_with_remote.artist).to eq('dj dingus')
+          downloaded_mp3 = download_mp3_tempfile song_with_remote.mp3_url
+          expect(Rupeepeethree::Tagger.tags(downloaded_mp3.path).fetch(:artist)).to eq('dj dingus')
         end
       end
     end

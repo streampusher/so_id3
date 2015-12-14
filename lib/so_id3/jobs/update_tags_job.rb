@@ -3,7 +3,14 @@ module SoId3::Jobs
     queue_as :default
 
     def perform taggable
-      taggable.tags.sync_tags_from_db_to_file
+      # TODO transaction?
+      taggable.update_column :tag_processing_status, 'processing'
+      begin
+        taggable.tags.sync_tags_from_db_to_file
+      rescue Exception => e
+        taggable.update_column :tag_processing_status, 'failed'
+        raise e
+      end
 
       if taggable.after_tags_synced_callbacks
         taggable.after_tags_synced_callbacks.each do |method|

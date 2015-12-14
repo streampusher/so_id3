@@ -3,6 +3,7 @@ class <%= migration_class_name %> < ActiveRecord::Migration
     change_table :<%= table_name %> do |t|
 <% mp3_file_names.each do |mp3_file_name| -%>
       t.id3_tags :<%= mp3_file_name %>
+      t.integer :tag_processing_status, null: false, default: 0
 <% end -%>
     end
   end
@@ -11,5 +12,6 @@ class <%= migration_class_name %> < ActiveRecord::Migration
 <% mp3_file_names.each do |mp3_file_name| -%>
     remove_id3_tags :<%= table_name %>, :<%= mp3_file_name %>
 <% end -%>
+    remove_column :<%= table_name %>, :tag_processing_status
   end
 end
