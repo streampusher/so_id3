@@ -9,7 +9,8 @@ module SoId3
       'title',
       'album',
       'year',
-      'track'
+      'track',
+      'length'
     ]
 
     attr_accessor :tagger

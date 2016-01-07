@@ -7,7 +7,8 @@ module SoId3
                title: :string,
                album: :string,
                year: :integer,
-               track: :integer}
+               track: :integer,
+               length: :integer}
 
     def self.included(base)
       ActiveRecord::ConnectionAdapters::Table.send :include, TableDefinition

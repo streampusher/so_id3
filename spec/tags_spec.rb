@@ -8,7 +8,8 @@ class FakeTagger
       title: 'a cool song',
       album: 'hey',
       year: '0',
-      track: '3'
+      track: '3',
+      length: '120',
     }
   end
   def tag(file, tags)
@@ -33,6 +34,7 @@ describe SoId3::Tags do
         expect(cache).to receive(:write_attribute).with("album", "hey")
         expect(cache).to receive(:write_attribute).with("year", "0")
         expect(cache).to receive(:write_attribute).with("track", "3")
+        expect(cache).to receive(:write_attribute).with("length", "120")
         expect(cache).to receive(:save!)
         tags.sync_tags_from_file_to_db
       end
@@ -44,6 +46,7 @@ describe SoId3::Tags do
         expect(cache).to receive(:read_attribute).with("album")
         expect(cache).to receive(:read_attribute).with("year")
         expect(cache).to receive(:read_attribute).with("track")
+        expect(cache).to receive(:read_attribute).with("length")
         tags.sync_tags_from_db_to_file
       end
     end

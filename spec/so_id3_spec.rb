@@ -24,8 +24,9 @@ describe SoId3 do
         @song.reload
       end
       it "fetches tags from the file to the db" do
-        expect(@song.artist).to eq('dj nameko')
-        expect(@song.title).to eq('a cool song')
+        expect(@song.artist).to eq 'dj nameko'
+        expect(@song.title).to eq 'a cool song'
+        expect(@song.length).to eq 2
       end
       it 'writes tags from the db to the file' do
         @song.artist = 'dj heartrider'
