@@ -22,6 +22,19 @@ module TagsMacros
     end
   end
 
+  def reset_s3_object_in_subdir mp3 = "spec/support/test.mp3"
+    s3_credentials = { bucket: ENV['S3_BUCKET'],
+                      access_key_id: ENV['S3_KEY'],
+                      secret_access_key: ENV['S3_SECRET'] }
+    VCR.use_cassette "reset_s3_object_in_subdir_#{File.basename(mp3)}" do
+      @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
+                        secret_access_key: s3_credentials[:secret_access_key])
+      @bucket = @s3.buckets.create(s3_credentials[:bucket])
+      key = "subdir/test.mp3"
+      @bucket.objects[key].write(file: mp3, acl: :public_read)
+    end
+  end
+
   def download_mp3_tempfile url
     t = Tempfile.new
     t.binmode

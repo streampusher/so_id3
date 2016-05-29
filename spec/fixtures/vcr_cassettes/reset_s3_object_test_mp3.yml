@@ -12,11 +12,11 @@ http_interactions:
       Accept-Encoding:
       - ''
       User-Agent:
-      - aws-sdk-ruby/1.65.0 ruby/2.3.0 x86_64-darwin14
+      - aws-sdk-ruby/1.66.0 ruby/2.3.0 x86_64-darwin14
       Date:
-      - Mon, 14 Dec 2015 08:33:04 GMT
+      - Sun, 29 May 2016 08:05:46 GMT
       Authorization:
-      - AWS <S3_KEY>:9U9KE3XaNra0OG1xiAfFMR63EQg=
+      - AWS <S3_KEY>:kXsbpHiSsItbamevEK3G6sj6BHA=
       Accept:
       - "*/*"
   response:
@@ -25,11 +25,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - hAGS869K/R5mX/4bCk63eHnLcC0NBhTw8NVQwf7iIBkawplnUezRFEdFUfH169Rb
+      - UTw9YI9QGyhrGNvkl6m2Z2k6FOCsCUUjIO+qqgL8Qh6AMWUXflLRPvAvYJXvJXpA77m7IP/kezw=
       X-Amz-Request-Id:
-      - F332DB9ED912DBAD
+      - 1A01602F4FF24CE4
       Date:
-      - Mon, 14 Dec 2015 08:33:06 GMT
+      - Sun, 29 May 2016 08:05:49 GMT
       Location:
       - "/<S3_BUCKET>"
       Content-Length:
@@ -40,7 +40,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Mon, 14 Dec 2015 08:33:05 GMT
+  recorded_at: Sun, 29 May 2016 08:05:47 GMT
 - request:
     method: put
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
@@ -1359,13 +1359,13 @@ http_interactions:
       X-Amz-Acl:
       - public-read
       User-Agent:
-      - aws-sdk-ruby/1.65.0 ruby/2.3.0 x86_64-darwin14
+      - aws-sdk-ruby/1.66.0 ruby/2.3.0 x86_64-darwin14
       Expect:
       - 100-continue
       Date:
-      - Mon, 14 Dec 2015 08:33:05 GMT
+      - Sun, 29 May 2016 08:05:47 GMT
       Authorization:
-      - AWS <S3_KEY>:RAWVyIDVLLXtofBrztTAxg6sGpE=
+      - AWS <S3_KEY>:hx5qnKwelNi8RhE3Wqj/SXsRF4Q=
       Accept:
       - "*/*"
   response:
@@ -1374,11 +1374,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - k1YK2ZEosW/Gi6b/et/CQlMl3rzdn3Mv8zzdVC4J900Us+TpVCGlUAyw4BeCotcF
+      - 2/UBiQZUKTjRdYabciNcOmGTRLFDR5W954nlvEOXDDYl7mSnqAhpXlk6tGcVfDjusPWV1HXAmkI=
       X-Amz-Request-Id:
-      - 8A9F98A1AE8EEE2B
+      - 1A9F9E4A97C125CD
       Date:
-      - Mon, 14 Dec 2015 08:33:07 GMT
+      - Sun, 29 May 2016 08:05:50 GMT
       Etag:
       - '"bea56b6130830db1e9017bc5636546ee"'
       Content-Length:
@@ -1389,5 +1389,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Mon, 14 Dec 2015 08:33:07 GMT
+  recorded_at: Sun, 29 May 2016 08:05:49 GMT
 recorded_with: VCR 2.9.3
