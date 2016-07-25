@@ -6,6 +6,7 @@ ActiveRecord::Schema.define do
     t.id3_tags
     t.integer :tag_processing_status, null: false, default: 0
 
+    t.attachment :artwork
     t.timestamps null: true
   end
 
@@ -14,6 +15,7 @@ ActiveRecord::Schema.define do
     t.id3_tags
     t.integer :tag_processing_status, null: false, default: 0
 
+    t.attachment :artwork
     t.timestamps null: true
   end
 end

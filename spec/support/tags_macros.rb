@@ -5,6 +5,7 @@ module TagsMacros
     tags = {}
     tags[:artist] = 'dj nameko'
     tags[:title] = 'a cool song'
+    tags[:picture] = "spec/support/artwork.png"
     mp3 = "spec/support/test.mp3"
     Rupeepeethree::Tagger.tag(mp3, tags)
   end

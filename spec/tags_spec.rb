@@ -10,6 +10,7 @@ class FakeTagger
       year: '0',
       track: '3',
       length: '120',
+      picture: 'spec/support/artwork.png'
     }
   end
   def tag(file, tags)

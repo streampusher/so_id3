@@ -14,6 +14,11 @@ module SoId3
         SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_column) do
           self.send(opts[:column].to_sym)
         end
+        if opts[:artwork_column]
+          SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_artwork_column) do
+            self.send(opts[:artwork_column].to_sym)
+          end
+        end
         SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_storage) do
           (opts[:storage] || :filesystem).to_sym
         end
@@ -42,7 +47,7 @@ module SoId3
       end
 
       def tags
-        @tags ||= SoId3::Tags.new(so_id3_column, self, so_id3_storage, s3_credentials)
+        @tags ||= SoId3::Tags.new(so_id3_column, self, so_id3_storage, s3_credentials, so_id3_artwork_column)
       end
     end
   end
