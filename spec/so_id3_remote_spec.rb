@@ -19,14 +19,19 @@ describe SoId3 do
 
       include Paperclip::Glue
       has_attached_file :artwork,
-        storage: :filesystem,
-        path: "tmp/:attachment/:id/:style/:basename.:extension"
+        storage: :s3,
+        s3_credentials: Proc.new{|a| a.instance.s3_credentials }
+
       validates_attachment_content_type :artwork, content_type: /\Aimage\/.*\Z/
 
       has_tags column: :mp3, storage: :s3, artwork_column: :artwork,
                s3_credentials: { bucket: ENV['S3_BUCKET'],
                                  access_key_id: ENV['S3_KEY'],
                                  secret_access_key: ENV['S3_SECRET'] }
+
+      def s3_credentials
+        { bucket: ENV['S3_BUCKET'], access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET'] }
+      end
 
       def mp3_url
         "https://s3.amazonaws.com/#{ENV['S3_BUCKET']}/#{mp3}"
@@ -41,12 +46,31 @@ describe SoId3 do
           song_with_remote.reload
           expect(song_with_remote.artist).to eq('dj nameko')
           expect(song_with_remote.title).to eq('a cool song')
-          expect(File.read(song_with_remote.artwork.path)).to eq File.read("spec/support/artwork.png")
+
+          uri = URI.parse(song_with_remote.artwork.url)
+          t = Tempfile.new([File.basename(song_with_remote.artwork.path, ".*"), File.extname(song_with_remote.artwork.path)])
+          t.binmode
+          Net::HTTP.start(uri.host, uri.port) do |http|
+            resp = http.get(uri.path)
+            t.write(resp.body)
+            t.flush
+          end
+          expect(File.read(t.path)).to eq File.read("spec/support/artwork.png")
 
           song_with_remote.artist = 'dj heartrider'
+          song_with_remote.artwork = File.new("spec/support/artwork2.png")
           song_with_remote.save!
           song_with_remote.reload
           expect(song_with_remote.artist).to eq('dj heartrider')
+          uri = URI.parse(song_with_remote.artwork.url)
+          t = Tempfile.new([File.basename(song_with_remote.artwork.path, ".*"), File.extname(song_with_remote.artwork.path)])
+          t.binmode
+          Net::HTTP.start(uri.host, uri.port) do |http|
+            resp = http.get(uri.path)
+            t.write(resp.body)
+            t.flush
+          end
+          expect(File.read(t.path)).to eq File.read("spec/support/artwork2.png")
           downloaded_mp3 = download_mp3_tempfile song_with_remote.mp3_url
           expect(Rupeepeethree::Tagger.tags(downloaded_mp3.path).fetch(:artist)).to eq('dj heartrider')
         end
@@ -72,7 +96,16 @@ describe SoId3 do
           song_with_remote.reload
           expect(song_with_remote.artist).to eq('dj nameko')
           expect(song_with_remote.title).to eq('a cool song')
-          expect(File.read(song_with_remote.artwork.path)).to eq File.read("spec/support/artwork.png")
+
+          uri = URI.parse(song_with_remote.artwork.url)
+          t = Tempfile.new([File.basename(song_with_remote.artwork.path, ".*"), File.extname(song_with_remote.artwork.path)])
+          t.binmode
+          Net::HTTP.start(uri.host, uri.port) do |http|
+            resp = http.get(uri.path)
+            t.write(resp.body)
+            t.flush
+          end
+          expect(File.read(t.path)).to eq File.read("spec/support/artwork.png")
 
           song_with_remote.artist = 'dj heartrider'
           song_with_remote.save!

@@ -6,3 +6,4 @@ gemspec
 gem 'rupeepeethree', path: "~/src/rupeepeethree"
 gem 'paperclip'
 gem 'dotenv'
+gem 'byebug'

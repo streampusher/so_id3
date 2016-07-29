@@ -1,6 +1,9 @@
 require 'rupeepeethree'
 require 'open-uri'
 require 'aws-sdk'
+require 'net/http'
+require 'uri'
+
 module SoId3
   class Tags
     VALID_TAGS = [
@@ -49,7 +52,11 @@ module SoId3
         tags[tag_name.to_sym] = text
       end
       if @artwork_column != nil && @artwork_column.path.present?
-        tags[:picture] = @artwork_column.path
+        if @artwork_column.options[:storage] == :s3
+          tags[:picture] = get_artwork_file_from_s3
+        else
+          tags[:picture] = @artwork_column.path
+        end
       end
       @tagger.tag(@mp3_tempfile, tags)
       if @storage == :s3
@@ -85,6 +92,18 @@ module SoId3
       key = @mp3_filename
       puts "the key in write_file_to_s3: #{key}"
       @bucket.objects[key].write(file: @mp3_tempfile, acl: :public_read)
+    end
+
+    def get_artwork_file_from_s3
+      uri = URI.parse(@artwork_column.url)
+      t = Tempfile.new([File.basename(@artwork_column.path, ".*"), File.extname(@artwork_column.path)])
+      t.binmode
+      Net::HTTP.start(uri.host, uri.port) do |http|
+        resp = http.get(uri.path)
+        t.write(resp.body)
+        t.flush
+      end
+      t.path
     end
 
     def get_file_from_s3 filename
