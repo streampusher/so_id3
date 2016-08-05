@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'active_job'
-require 'so_id3'
-require 'paperclip'
 
 describe SoId3 do
   before :all do
@@ -12,32 +9,6 @@ describe SoId3 do
     ActiveJob::Base.queue_adapter = :inline
   end
   describe "#has_tags" do
-    class SongWithS3 < ActiveRecord::Base
-      include SoId3::BackgroundJobs
-      include GlobalID::Identification
-      GlobalID.app="soid3-test"
-
-      include Paperclip::Glue
-      has_attached_file :artwork,
-        storage: :s3,
-        s3_credentials: Proc.new{|a| a.instance.s3_credentials },
-        path: ":attachment/:style/:basename.:extension"
-
-      validates_attachment_content_type :artwork, content_type: /\Aimage\/.*\Z/
-
-      has_tags column: :mp3, storage: :s3, artwork_column: :artwork,
-               s3_credentials: { bucket: ENV['S3_BUCKET'],
-                                 access_key_id: ENV['S3_KEY'],
-                                 secret_access_key: ENV['S3_SECRET'] }
-
-      def s3_credentials
-        { bucket: ENV['S3_BUCKET'], access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET'] }
-      end
-
-      def mp3_url
-        "https://s3.amazonaws.com/#{ENV['S3_BUCKET']}/#{mp3}"
-      end
-    end
     context "with remote files" do
       it 'works with remote files' do
         VCR.use_cassette "song_with_remote" do
@@ -112,19 +83,6 @@ describe SoId3 do
         end
       end
       it "handles filenames with escaped characters" do
-        class SongWithS3 < ActiveRecord::Base
-          has_tags column: :mp3, storage: :s3,
-                   s3_credentials: { bucket: ENV['S3_BUCKET'],
-                                     access_key_id: ENV['S3_KEY'],
-                                     secret_access_key: ENV['S3_SECRET'] }
-          include SoId3::BackgroundJobs
-          include GlobalID::Identification
-          GlobalID.app="soid3-test"
-
-          def mp3_url
-            "https://s3.amazonaws.com/#{ENV['S3_BUCKET']}/#{mp3}"
-          end
-        end
         VCR.use_cassette "song_with_remote_with_special_characters" do
           reset_tags
           reset_s3_object "spec/support/the cowbell wau with spaces.mp3"

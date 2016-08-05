@@ -1,7 +1,5 @@
 require 'spec_helper'
-require 'active_job'
-require 'so_id3'
-require 'paperclip'
+require 'byebug'
 
 describe SoId3 do
   before :all do
@@ -12,19 +10,6 @@ describe SoId3 do
     ActiveJob::Base.queue_adapter = :inline
   end
   describe "#has_tags" do
-    class Song < ActiveRecord::Base
-      include SoId3::BackgroundJobs
-      include GlobalID::Identification
-      GlobalID.app="soid3-test"
-
-      include Paperclip::Glue
-      has_attached_file :artwork,
-        storage: :filesystem,
-        path: "tmp/:attachment/:id/:style/:basename.:extension"
-      validates_attachment_content_type :artwork, content_type: /\Aimage\/.*\Z/
-
-      has_tags column: :mp3, artwork_column: :artwork
-    end
     context "with local files" do
       before :each do
         reset_tags

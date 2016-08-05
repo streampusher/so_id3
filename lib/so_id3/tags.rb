@@ -90,7 +90,7 @@ module SoId3
 
     def write_file_to_s3
       key = @mp3_filename
-      puts "the key in write_file_to_s3: #{key}"
+      puts "the key in write_file_to_s3: #{key}" # TODO use a real logger
       @bucket.objects[key].write(file: @mp3_tempfile, acl: :public_read)
     end
 

@@ -11,25 +11,25 @@ module SoId3
 
     module ClassMethods
       def has_tags(opts)
-        SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_column) do
+        self.send(:define_method, :so_id3_column) do
           self.send(opts[:column].to_sym)
         end
         if opts[:artwork_column]
-          SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_artwork_column) do
+          self.send(:define_method, :so_id3_artwork_column) do
             self.send(opts[:artwork_column].to_sym)
           end
         end
-        SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :so_id3_storage) do
+        self.send(:define_method, :so_id3_storage) do
           (opts[:storage] || :filesystem).to_sym
         end
-        SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :s3_credentials) do
+        self.send(:define_method, :s3_credentials) do
           opts[:s3_credentials]
         end
         include SoId3::ActiveRecord::LocalInstanceMethods
       end
 
       def after_tags_synced *methods
-        SoId3::ActiveRecord::LocalInstanceMethods.send(:define_method, :after_tags_synced_callbacks) do
+        self.send(:define_method, :after_tags_synced_callbacks) do
           methods.to_a
         end
       end

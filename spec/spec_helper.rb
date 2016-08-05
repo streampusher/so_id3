@@ -1,9 +1,15 @@
-require 'rspec'
-require 'vcr'
 require 'dotenv'
 Dotenv.load
+require 'rspec'
+require 'vcr'
+require 'paperclip'
+require 'active_record'
+require 'active_job'
+require 'so_id3'
 
 require './spec/support/tags_macros.rb'
+require './spec/support/song'
+require './spec/support/song_with_s3'
 
 RSpec.configure do |config|
   config.include(TagsMacros)

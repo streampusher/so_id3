@@ -14,9 +14,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:43:46 GMT
+      - Thu, 04 Aug 2016 10:06:49 GMT
       Authorization:
-      - AWS <S3_KEY>:CDw9NIDXStDXFxNIw9ao6b8fRJs=
+      - AWS <S3_KEY>:3VDDBRMkA62BRih2juom04hdr5M=
       Accept:
       - "*/*"
   response:
@@ -25,11 +25,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - 9KKlNcuBE2NbnCKH9PvKx1tFzfVipnT/1hYowcczT5xjHLzPad9cf/6I6Es0r1/EInsxj5PQ/Gw=
+      - rcOyxRf/k7gldWySBnqxgaaUbkhMPJWsCXgXLlGo1CpGJ1lYZ+tBChrHkqlVcbNC
       X-Amz-Request-Id:
-      - 8FC4220CE1F34B8B
+      - F08C090E56D4A7CD
       Date:
-      - Fri, 29 Jul 2016 19:43:47 GMT
+      - Thu, 04 Aug 2016 10:06:51 GMT
       Location:
       - "/<S3_BUCKET>"
       Content-Length:
@@ -40,7 +40,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:46 GMT
+  recorded_at: Thu, 04 Aug 2016 10:06:50 GMT
 - request:
     method: get
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
@@ -55,9 +55,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:43:47 GMT
+      - Thu, 04 Aug 2016 10:06:50 GMT
       Authorization:
-      - AWS <S3_KEY>:0VckbXbmcz0dteN9udcvpnew2ZI=
+      - AWS <S3_KEY>:Bhi0mN/bWEcdGHQxllzE/66OJ9M=
       Accept:
       - "*/*"
   response:
@@ -66,13 +66,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - 17WDIPY4LjwiP0669qPMjLboD3IJUFBb8lIagwk7PwnUpwgXddkPAvVaDDDfiCgj1P45A8lT/lU=
+      - uHgeGYmOOE2+frFkYv0iRwH35Zbqjxi3kDQRBdnxwjd007+tuoi3LvIAlZBiVJUx
       X-Amz-Request-Id:
-      - D533764C728C52C0
+      - 78B8BD394799CA61
       Date:
-      - Fri, 29 Jul 2016 19:43:48 GMT
+      - Thu, 04 Aug 2016 10:06:52 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:43:45 GMT
+      - Thu, 04 Aug 2016 10:06:48 GMT
       Etag:
       - '"23ad3e9b774660b503ddbbd5b2188060"'
       Accept-Ranges:
@@ -2148,10 +2148,10 @@ http_interactions:
         AAAAAABncmVhdGVzdCBoYXRzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/w==
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:48 GMT
+  recorded_at: Thu, 04 Aug 2016 10:06:51 GMT
 - request:
     method: put
-    uri: https://s3.amazonaws.com/<S3_BUCKET>/song_with_s3s/artworks/000/000/001/original/data
+    uri: https://s3.amazonaws.com/<S3_BUCKET>/artworks/original/data.
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -2927,9 +2927,9 @@ http_interactions:
       Expect:
       - 100-continue
       Date:
-      - Fri, 29 Jul 2016 19:43:48 GMT
+      - Thu, 04 Aug 2016 10:07:07 GMT
       Authorization:
-      - AWS <S3_KEY>:VLA9O54pkUX2ZNJ96LAinr+xOYc=
+      - AWS <S3_KEY>:z6o85Gb7EYjVhXGBA9PAAsG5Si8=
       Accept:
       - "*/*"
   response:
@@ -2938,11 +2938,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - dpH2KI7SbGhMwkM06O8AzUhE5u76E6pxUj1s5gAaWgJZSpsxs/aEenTTSn1WLAnf+U2lkmTDtxA=
+      - mh0ONIMTUy6YaCEI1qsUCmN+SgP56WoUDRjWOsfbHwV2tDAwlDkXw+UbUSVqoXnvhc4fW8+EhkU=
       X-Amz-Request-Id:
-      - 1F8EB505B559501B
+      - BAD1FA87E028BEB0
       Date:
-      - Fri, 29 Jul 2016 19:43:50 GMT
+      - Thu, 04 Aug 2016 10:07:09 GMT
       Etag:
       - '"509ad54ffa7d8ad67bde4fb9115c95c9"'
       Content-Length:
@@ -2953,7 +2953,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:49 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:09 GMT
 - request:
     method: put
     uri: https://s3.amazonaws.com/<S3_BUCKET>
@@ -2968,9 +2968,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:43:49 GMT
+      - Thu, 04 Aug 2016 10:07:09 GMT
       Authorization:
-      - AWS <S3_KEY>:XdPgM9qOmUR1x1B79v6paAEbH88=
+      - AWS <S3_KEY>:Nn/iUvwzeX4u/dtNHfdKzSupNTw=
       Accept:
       - "*/*"
   response:
@@ -2979,11 +2979,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - KHIcd+7mzqubYnIMoImrJDz7ynHwvAwpE6uUL07fXmialmlDJvqtNJucVQyz0tbSU5uSQIFU9fs=
+      - omG8oItrO/a7EFyKnaZPE7/6i5zaACdE2lf9v0B1iyeoTJWVoTPe4BAr6Mti2h0QigtuEJm7v68=
       X-Amz-Request-Id:
-      - 7E72A1F4EC5C8E91
+      - 1D76C14C6DEBE56B
       Date:
-      - Fri, 29 Jul 2016 19:43:51 GMT
+      - Thu, 04 Aug 2016 10:07:11 GMT
       Location:
       - "/<S3_BUCKET>"
       Content-Length:
@@ -2994,7 +2994,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:50 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:10 GMT
 - request:
     method: get
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
@@ -3009,9 +3009,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:43:50 GMT
+      - Thu, 04 Aug 2016 10:07:10 GMT
       Authorization:
-      - AWS <S3_KEY>:wA71QH2sPHD2q1qRdw+IQeu46XU=
+      - AWS <S3_KEY>:T7d0WaM2Z8y4jWJSSu8mD8l9ZY0=
       Accept:
       - "*/*"
   response:
@@ -3020,13 +3020,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - "/y/ZTQ722FUaEoer+GcqGGkHx7onymTjrkvxlccQ/wtSl1lkiD4i2K8XoWzPsKgMMKZqlEhNa1I="
+      - MaUCF7z1Q5hBdFyl+HMQ6UkH+M9XVJC5Y0nbIYhLcLj6u3nRyMdgPMPYGHP5JlMEJu7LSUZxq5k=
       X-Amz-Request-Id:
-      - E9B31BFB16CF7B83
+      - 30B5BD65B784B69C
       Date:
-      - Fri, 29 Jul 2016 19:43:52 GMT
+      - Thu, 04 Aug 2016 10:07:11 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:43:45 GMT
+      - Thu, 04 Aug 2016 10:06:48 GMT
       Etag:
       - '"23ad3e9b774660b503ddbbd5b2188060"'
       Accept-Ranges:
@@ -5102,10 +5102,10 @@ http_interactions:
         AAAAAABncmVhdGVzdCBoYXRzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/w==
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:52 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:11 GMT
 - request:
     method: get
-    uri: http://s3.amazonaws.com/<S3_BUCKET>/song_with_s3s/artworks/000/000/001/original/data
+    uri: http://s3.amazonaws.com/<S3_BUCKET>/artworks/original/data.
     body:
       encoding: US-ASCII
       string: ''
@@ -5122,13 +5122,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - P/E1tsmzKLCejO+NCCR6ZDELHC68W/BdiHOW1ZJm7ENkpb+7eVfkVjiaKJFeSR7rU0AGMdQNdT8=
+      - cy8ESy1g9ZlBPLUvXrFtpdrfKTE6EgwTFP0+hp4wea0CsvTuv4x4sHJVmsF+SB0dAR1y19r37X4=
       X-Amz-Request-Id:
-      - 90F70DF5DD48F308
+      - BCA3E8E1505DA4DF
       Date:
-      - Fri, 29 Jul 2016 19:43:53 GMT
+      - Thu, 04 Aug 2016 10:07:12 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:43:50 GMT
+      - Thu, 04 Aug 2016 10:07:09 GMT
       Etag:
       - '"509ad54ffa7d8ad67bde4fb9115c95c9"'
       Accept-Ranges:
@@ -5901,7 +5901,7 @@ http_interactions:
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFIL/B8UXtpyXbs/yAAAAAElF
         TkSuQmCC
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:52 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:12 GMT
 - request:
     method: put
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
@@ -7983,9 +7983,9 @@ http_interactions:
       Expect:
       - 100-continue
       Date:
-      - Fri, 29 Jul 2016 19:43:52 GMT
+      - Thu, 04 Aug 2016 10:07:12 GMT
       Authorization:
-      - AWS <S3_KEY>:S8FWf4JfcRbWJSwBBUXvKhx41R4=
+      - AWS <S3_KEY>:r5QtVkoo0yK6LjZa6SDMYl8KKRw=
       Accept:
       - "*/*"
   response:
@@ -7994,11 +7994,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - 5VY5zQA2dcgebZO4Yk/v3pBNZfjQ8uCm040/JBTOz4asG8bCvWqfiJ3qodDEKpMTbI7f7454LOE=
+      - CEJPlaM9rONJwWQ6N80gk4AbB5+OBxd0sAaCsaUhH6nYwegp+tTBmDeXqeNIt+mMibkKI9fdZJ8=
       X-Amz-Request-Id:
-      - 2A21A8EC3DC94165
+      - D5B0D31E97FC293B
       Date:
-      - Fri, 29 Jul 2016 19:43:54 GMT
+      - Thu, 04 Aug 2016 10:07:14 GMT
       Etag:
       - '"3f03194737f98aad2ed9300ca094501d"'
       Content-Length:
@@ -8009,10 +8009,10 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:55 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:14 GMT
 - request:
     method: get
-    uri: http://s3.amazonaws.com/<S3_BUCKET>/song_with_s3s/artworks/000/000/001/original/data
+    uri: http://s3.amazonaws.com/<S3_BUCKET>/artworks/original/data.
     body:
       encoding: US-ASCII
       string: ''
@@ -8029,13 +8029,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - 0mZrTLIRVdYUH65nsfvVrcutLp6D/DXIQPpvXNrr4Q1U3UsYmO6FZzBCZSIfOn8RZ3l1wNGWq0M=
+      - 9aNRJ+7BAzCVRRCLQBzC8DkEvtzgV4H1ZaKGwNtN74jtj7HxUzMx6yBk6DpZprfMj4hTnLT02CE=
       X-Amz-Request-Id:
-      - 317AF501C8FBDB6F
+      - 14C5E791662E90A2
       Date:
-      - Fri, 29 Jul 2016 19:43:57 GMT
+      - Thu, 04 Aug 2016 10:07:16 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:43:50 GMT
+      - Thu, 04 Aug 2016 10:07:09 GMT
       Etag:
       - '"509ad54ffa7d8ad67bde4fb9115c95c9"'
       Accept-Ranges:
@@ -8808,10 +8808,10 @@ http_interactions:
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFIL/B8UXtpyXbs/yAAAAAElF
         TkSuQmCC
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:56 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:15 GMT
 - request:
     method: head
-    uri: https://s3.amazonaws.com/<S3_BUCKET>/song_with_s3s/artworks/000/000/001/original/data
+    uri: https://s3.amazonaws.com/<S3_BUCKET>/artworks/original/data.
     body:
       encoding: US-ASCII
       string: ''
@@ -8823,9 +8823,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:43:56 GMT
+      - Thu, 04 Aug 2016 10:07:15 GMT
       Authorization:
-      - AWS <S3_KEY>:y7f69oRKZEaQtvk6iK2Jw1hvWlw=
+      - AWS <S3_KEY>:b0T0Jv0GY6YQgsHZt/c58qkJgSU=
       Accept:
       - "*/*"
   response:
@@ -8834,13 +8834,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - cIGm07ebbFvsIMvlActp7z6gaaO3/LRXmrn/kD6k1PfXEuUv8hRv+qZdoZ/PrD55A7DfTT01AMw=
+      - RoR5PRy5UM+Dx7gJr0GlYNB+Qfqavii/eDbdZo2QUM3RAVeEqbeTk0C5gR/la+fXRwqXpd3S/f8=
       X-Amz-Request-Id:
-      - 99F1796E9D51B5BA
+      - 842EC819FD0B5E91
       Date:
-      - Fri, 29 Jul 2016 19:43:58 GMT
+      - Thu, 04 Aug 2016 10:07:17 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:43:50 GMT
+      - Thu, 04 Aug 2016 10:07:09 GMT
       Etag:
       - '"509ad54ffa7d8ad67bde4fb9115c95c9"'
       Accept-Ranges:
@@ -8855,10 +8855,10 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:57 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:16 GMT
 - request:
     method: delete
-    uri: https://s3.amazonaws.com/<S3_BUCKET>/song_with_s3s/artworks/000/000/001/original/data
+    uri: https://s3.amazonaws.com/<S3_BUCKET>/artworks/original/data.
     body:
       encoding: US-ASCII
       string: ''
@@ -8870,9 +8870,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:43:57 GMT
+      - Thu, 04 Aug 2016 10:07:16 GMT
       Authorization:
-      - AWS <S3_KEY>:K071e9scoNIev/0oEjs+f5ZhEwQ=
+      - AWS <S3_KEY>:2xqTIWyOE2Td8EDkCX50QpGpCnM=
       Accept:
       - "*/*"
   response:
@@ -8881,21 +8881,21 @@ http_interactions:
       message: No Content
     headers:
       X-Amz-Id-2:
-      - LeuO7O/8sKsmkyoTvxdsMyHSLFyV+oBgxIMfnCzk/Jb1b03jRjlWCXMhNqqMkEi+yICO5wdeaWY=
+      - eXDxGYo/JKC2epU/psEaunnrgsUj6HGcmGZLPV79QU2qqMRbN2GGLX1QOXJROZhG/uUCYQeqp44=
       X-Amz-Request-Id:
-      - 022027014F6D7F56
+      - 574619C6ED3F362B
       Date:
-      - Fri, 29 Jul 2016 19:43:59 GMT
+      - Thu, 04 Aug 2016 10:07:17 GMT
       Server:
       - AmazonS3
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:58 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:17 GMT
 - request:
     method: put
-    uri: https://s3.amazonaws.com/<S3_BUCKET>/song_with_s3s/artworks/000/000/001/original/artwork2.png
+    uri: https://s3.amazonaws.com/<S3_BUCKET>/artworks/original/artwork2.png
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -17883,9 +17883,9 @@ http_interactions:
       Expect:
       - 100-continue
       Date:
-      - Fri, 29 Jul 2016 19:43:58 GMT
+      - Thu, 04 Aug 2016 10:07:17 GMT
       Authorization:
-      - AWS <S3_KEY>:IxbfE+I9ZwMrdhZ2CBU1G6ZTKOU=
+      - AWS <S3_KEY>:3IrbhwCLJMFo6rIJ2gcHtIAGMkg=
       Accept:
       - "*/*"
   response:
@@ -17894,11 +17894,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - B2S8EwHbLBeCkzMVE2JgOdrQtbFDv9hytwBR5P1D9z2gXTp/2zY+W6tpIkLCBeUwItjy0Gz10h0=
+      - 1kwmkCjrMbNcF2hN6sHzIQNKuOwDWkCE8pPFWijwFaP0xxLSkJaAKgo5ILWnsn9o62D/EKKJ3IU=
       X-Amz-Request-Id:
-      - 0578E48DBA2E91E7
+      - F43ABC22B621A8F4
       Date:
-      - Fri, 29 Jul 2016 19:43:59 GMT
+      - Thu, 04 Aug 2016 10:07:20 GMT
       Etag:
       - '"670955f60b71b0c074dbcbdd4cc6e8e2"'
       Content-Length:
@@ -17909,7 +17909,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:44:00 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:25 GMT
 - request:
     method: put
     uri: https://s3.amazonaws.com/<S3_BUCKET>
@@ -17924,9 +17924,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:44:00 GMT
+      - Thu, 04 Aug 2016 10:07:25 GMT
       Authorization:
-      - AWS <S3_KEY>:C0AJ1LvwTthMBhjrRZuoXZgFS3s=
+      - AWS <S3_KEY>:UdSHEY2YhQLgdPcprv74dplMnJI=
       Accept:
       - "*/*"
   response:
@@ -17935,11 +17935,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - yd14ThoNj0Ipk975UmvsLIBmtwhLlnklQBfl+wffJFolZhIeAif270cjsnvkDfKpqkpoBB4kMH8=
+      - 7nfRNKrw1aILIG6L9XpoMl3B71x2TTvq2TpcfNoNySBfFAbrmpzrBViBMdsi/6fLrFRve8eKlWs=
       X-Amz-Request-Id:
-      - 797E2AD55B3BD13C
+      - 00DCE74067AB787F
       Date:
-      - Fri, 29 Jul 2016 19:44:02 GMT
+      - Thu, 04 Aug 2016 10:07:27 GMT
       Location:
       - "/<S3_BUCKET>"
       Content-Length:
@@ -17950,7 +17950,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:44:01 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:26 GMT
 - request:
     method: get
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
@@ -17965,9 +17965,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:44:01 GMT
+      - Thu, 04 Aug 2016 10:07:26 GMT
       Authorization:
-      - AWS <S3_KEY>:bC/kVkrCxLBNr4g77nwkTUHNVIQ=
+      - AWS <S3_KEY>:K1FP2dYYA66Kh6AHhNBUIpAFVTw=
       Accept:
       - "*/*"
   response:
@@ -17976,13 +17976,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - QMA3B5q75wJqv4eqmY69BPfoeWasx5psa/wzjUUKbtDtfAQvx1CuL3PcDic88uXAmAsXRsNqcNs=
+      - 0LRomO5FNs6Dh8z2aOCu4smbMeet80k4iPUfBNueGtuaclvJIZ4cVWrazBxGVXfU3W/xfKZqV0I=
       X-Amz-Request-Id:
-      - DABF7D2EAC68F85A
+      - 5E7C1DF354295985
       Date:
-      - Fri, 29 Jul 2016 19:44:03 GMT
+      - Thu, 04 Aug 2016 10:07:28 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:43:54 GMT
+      - Thu, 04 Aug 2016 10:07:14 GMT
       Etag:
       - '"3f03194737f98aad2ed9300ca094501d"'
       Accept-Ranges:
@@ -20058,10 +20058,10 @@ http_interactions:
         AAAAAABncmVhdGVzdCBoYXRzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/w==
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:44:03 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:27 GMT
 - request:
     method: get
-    uri: http://s3.amazonaws.com/<S3_BUCKET>/song_with_s3s/artworks/000/000/001/original/artwork2.png
+    uri: http://s3.amazonaws.com/<S3_BUCKET>/artworks/original/artwork2.png
     body:
       encoding: US-ASCII
       string: ''
@@ -20078,13 +20078,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - 09MuMFtTqvCA9JVYmOaFHpqXYSznY7kWYWeYYKwuTfuutw8w7VZM3JME4YBrRnBYJ7RI4R3KBEI=
+      - m1NZCUe81AINoyfq7nNzO7F1lbkqLjoQ/zdZFBDqKHaow/vIaAdsDstp8BbaHwWQrqtQnZxpaYA=
       X-Amz-Request-Id:
-      - 78406E908903ED1E
+      - DF3E93F08334B4BE
       Date:
-      - Fri, 29 Jul 2016 19:44:04 GMT
+      - Thu, 04 Aug 2016 10:07:29 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:43:59 GMT
+      - Thu, 04 Aug 2016 10:07:20 GMT
       Etag:
       - '"670955f60b71b0c074dbcbdd4cc6e8e2"'
       Accept-Ranges:
@@ -29069,7 +29069,7 @@ http_interactions:
         C2aAbWrmaH7k596S3/nUb6bW9sQD9NLk2175XfnAD30wE+NrBddDDz30QA89
         0EMP9NADPfTQQw899NBjVfj/ATJWHgE+N2EnAAAAAElFTkSuQmCC
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:44:04 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:29 GMT
 - request:
     method: put
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
@@ -39364,9 +39364,9 @@ http_interactions:
       Expect:
       - 100-continue
       Date:
-      - Fri, 29 Jul 2016 19:44:04 GMT
+      - Thu, 04 Aug 2016 10:07:29 GMT
       Authorization:
-      - AWS <S3_KEY>:6lOopzE8PITnR3nNFx6kRMHsdQE=
+      - AWS <S3_KEY>:FCKni9+HiI7QqQW3wJrzk70VTz0=
       Accept:
       - "*/*"
   response:
@@ -39375,11 +39375,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - Y7Z20rSJCytcZBylwrpy2VGkW2lzVnslYYWJGMigQPeDCwBpjk0q+whAlVV8by+Cr2Cbzab6RD4=
+      - C8hCy9t2IFn89Jy+/5HDU5+3SLJFQetsLj191YFP8azFlMFafJD57KC7NL2kFVg7CjtpSil5E9E=
       X-Amz-Request-Id:
-      - AB367ABD2C9E32EB
+      - ECF024AA3B484F80
       Date:
-      - Fri, 29 Jul 2016 19:44:07 GMT
+      - Thu, 04 Aug 2016 10:07:31 GMT
       Etag:
       - '"d6fd58a9bd5063a6cf249462008db1df"'
       Content-Length:
@@ -39390,10 +39390,10 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:44:08 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:32 GMT
 - request:
     method: get
-    uri: http://s3.amazonaws.com/<S3_BUCKET>/song_with_s3s/artworks/000/000/001/original/artwork2.png
+    uri: http://s3.amazonaws.com/<S3_BUCKET>/artworks/original/artwork2.png
     body:
       encoding: US-ASCII
       string: ''
@@ -39410,13 +39410,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - NnsBk1b2+S2Uiy9OEwzEuniN8m8OmMq91w42B4H6Qtn18tQMkh2ZfsAANCSlLEwNnrmoH/Q0SFE=
+      - gLnnTRomatx4ran67zA84lRz0ZHYdKgCHpxLWGhe6QQ+sLirRr2UXeFklMtfKHUl/xL0bQ3MPPw=
       X-Amz-Request-Id:
-      - 6F8F05938F5683A8
+      - 0CA6AD4A1738120C
       Date:
-      - Fri, 29 Jul 2016 19:44:09 GMT
+      - Thu, 04 Aug 2016 10:07:33 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:43:59 GMT
+      - Thu, 04 Aug 2016 10:07:20 GMT
       Etag:
       - '"670955f60b71b0c074dbcbdd4cc6e8e2"'
       Accept-Ranges:
@@ -48401,7 +48401,7 @@ http_interactions:
         C2aAbWrmaH7k596S3/nUb6bW9sQD9NLk2175XfnAD30wE+NrBddDDz30QA89
         0EMP9NADPfTQQw899NBjVfj/ATJWHgE+N2EnAAAAAElFTkSuQmCC
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:44:09 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:34 GMT
 - request:
     method: get
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
@@ -48421,13 +48421,13 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - PF5pRtzY2l0DSIGCQWEgL1zeDkyWcPLgsZlPpgG2kf3ra21wbJl5L4apmkc5FrnFH5I7BZ3V8YQ=
+      - 7//hUrDmg1nk7PgBoGapfFh7jSCf5ci/g2L4fH0TvYKFKju55B1rdv0HppxrMAfC/s1byinR3PQ=
       X-Amz-Request-Id:
-      - F0B1318C9C4D6416
+      - 5187518A0EDBB67D
       Date:
-      - Fri, 29 Jul 2016 19:44:12 GMT
+      - Thu, 04 Aug 2016 10:07:35 GMT
       Last-Modified:
-      - Fri, 29 Jul 2016 19:44:07 GMT
+      - Thu, 04 Aug 2016 10:07:31 GMT
       Etag:
       - '"d6fd58a9bd5063a6cf249462008db1df"'
       Accept-Ranges:
@@ -58716,5 +58716,5 @@ http_interactions:
         AAAAAAAAZ3JlYXRlc3QgaGF0cwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/8=
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:44:12 GMT
+  recorded_at: Thu, 04 Aug 2016 10:07:36 GMT
 recorded_with: VCR 2.9.3

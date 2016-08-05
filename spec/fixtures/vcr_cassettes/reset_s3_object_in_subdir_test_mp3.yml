@@ -14,9 +14,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:29:25 GMT
+      - Thu, 04 Aug 2016 10:14:30 GMT
       Authorization:
-      - AWS <S3_KEY>:QPti9mVAASWolnalRX8D7c9ADb8=
+      - AWS <S3_KEY>:mdvnKqalkUPRGlgaRgrTpSKJGas=
       Accept:
       - "*/*"
   response:
@@ -25,11 +25,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - nhPUz5pcPtSM8h0ZSKgnsRBK8ZCR0wjxXR7WjUcUYEkXka4G4wvPn3Geep9UBeiV0MbVh2D83l0=
+      - PVUXqeJ1G9IANLJElUP2oy7nH7zMJLOrXZVINrfmF973YpKXjnyFcOX8MzthNcLWBLcn3Wos+EQ=
       X-Amz-Request-Id:
-      - 7FB5E0DF29D87E10
+      - 1EDFE16C0D350366
       Date:
-      - Fri, 29 Jul 2016 19:29:27 GMT
+      - Thu, 04 Aug 2016 10:14:32 GMT
       Location:
       - "/<S3_BUCKET>"
       Content-Length:
@@ -40,7 +40,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:29:26 GMT
+  recorded_at: Thu, 04 Aug 2016 10:14:31 GMT
 - request:
     method: put
     uri: https://s3.amazonaws.com/<S3_BUCKET>/subdir/test.mp3
@@ -2122,9 +2122,9 @@ http_interactions:
       Expect:
       - 100-continue
       Date:
-      - Fri, 29 Jul 2016 19:29:26 GMT
+      - Thu, 04 Aug 2016 10:14:31 GMT
       Authorization:
-      - AWS <S3_KEY>:hLW1tAGIjXjTUpsdyZHqMW8epNk=
+      - AWS <S3_KEY>:TpXEh09KEZak5+AylysxTDI513Y=
       Accept:
       - "*/*"
   response:
@@ -2133,11 +2133,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - cruxuG++0k5HuJwrgjIf4TKB/2jnH9EUyJZQNxv0bxVLFDjBbUC+eoOuw/e1L9xHTrSx7p2Q9gE=
+      - 7s7ux6SvsCevQqcnyFuXtTyF47NriODqcdnPjpyNReDGNvYPg72vmPH0IL6+E8G4BynPzsvbVgM=
       X-Amz-Request-Id:
-      - 418A0C06173370E6
+      - 4A1606C6B4407E79
       Date:
-      - Fri, 29 Jul 2016 19:29:28 GMT
+      - Thu, 04 Aug 2016 10:14:33 GMT
       Etag:
       - '"23ad3e9b774660b503ddbbd5b2188060"'
       Content-Length:
@@ -2148,5 +2148,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:29:28 GMT
+  recorded_at: Thu, 04 Aug 2016 10:14:36 GMT
 recorded_with: VCR 2.9.3

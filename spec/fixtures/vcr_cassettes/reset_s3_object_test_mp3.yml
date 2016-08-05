@@ -14,9 +14,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.66.0 ruby/2.3.1 x86_64-darwin15
       Date:
-      - Fri, 29 Jul 2016 19:43:42 GMT
+      - Thu, 04 Aug 2016 10:06:45 GMT
       Authorization:
-      - AWS <S3_KEY>:mT2r0JsdP2g+qcBR3TkyA0e1KNI=
+      - AWS <S3_KEY>:ziDVTswNOuFq1uoWM3wv31f5XtI=
       Accept:
       - "*/*"
   response:
@@ -25,11 +25,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - 9qZ6F9J78rOBz1nmPDcNbUHaEy8m2Epgw1ooteSPeKFgsO6u5tyvfQnRqqJf4DRrlQ2Hxp/z+Lw=
+      - FydRCplQqAX+0Nw0DmdaBoJabGaRcudQyspYd/l2/4CZ+6q28gZUWimGj6PrK73K
       X-Amz-Request-Id:
-      - A1C17AA44F774E38
+      - 156AC678BC792B8A
       Date:
-      - Fri, 29 Jul 2016 19:43:44 GMT
+      - Thu, 04 Aug 2016 10:06:47 GMT
       Location:
       - "/<S3_BUCKET>"
       Content-Length:
@@ -40,7 +40,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:43 GMT
+  recorded_at: Thu, 04 Aug 2016 10:06:47 GMT
 - request:
     method: put
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
@@ -2122,9 +2122,9 @@ http_interactions:
       Expect:
       - 100-continue
       Date:
-      - Fri, 29 Jul 2016 19:43:43 GMT
+      - Thu, 04 Aug 2016 10:06:47 GMT
       Authorization:
-      - AWS <S3_KEY>:5x99Jz/5f4/sBq7HwQZ+IzP74sM=
+      - AWS <S3_KEY>:oBZ3Y/OKfcqftXlRmM87lez0TvM=
       Accept:
       - "*/*"
   response:
@@ -2133,11 +2133,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - WGZvKJCtf1zyrmXOdmApZqyn/jum8qrx5SSZm8fgN9Nzfma2i0C6dFAJh84B4MB76nYtxbpYYP8=
+      - vXqLWp2Xqj8VKoEjQKJ+GINLd/dJvkLtBnLJWwD5gFMM1pCkGRctGnk53ITtdIjw
       X-Amz-Request-Id:
-      - 3643B6264886EB77
+      - E0645E6FC1611CF1
       Date:
-      - Fri, 29 Jul 2016 19:43:45 GMT
+      - Thu, 04 Aug 2016 10:06:48 GMT
       Etag:
       - '"23ad3e9b774660b503ddbbd5b2188060"'
       Content-Length:
@@ -2148,5 +2148,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 29 Jul 2016 19:43:45 GMT
+  recorded_at: Thu, 04 Aug 2016 10:06:49 GMT
 recorded_with: VCR 2.9.3
