@@ -5,6 +5,7 @@ ActiveRecord::Schema.define do
     t.string :mp3
     t.id3_tags
     t.integer :tag_processing_status, null: false, default: 0
+    t.string :another_column
 
     t.attachment :artwork
     t.timestamps null: true

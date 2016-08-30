@@ -47,6 +47,7 @@ describe SoId3 do
           expect(Rupeepeethree::Tagger.tags(downloaded_mp3.path).fetch(:artist)).to eq('dj heartrider')
         end
       end
+
       it "works with files in subdirectories on s3" do
         reset_tags
         reset_s3_object_in_subdir
@@ -82,6 +83,7 @@ describe SoId3 do
           expect(Rupeepeethree::Tagger.tags(downloaded_mp3.path).fetch(:artist)).to eq('dj dingus')
         end
       end
+
       it "handles filenames with escaped characters" do
         VCR.use_cassette "song_with_remote_with_special_characters" do
           reset_tags
