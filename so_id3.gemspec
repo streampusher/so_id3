@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mcfiredrill@gmail.com"]
   spec.description   = %q{add mp3 tags to your ActiveRecord models}
   spec.summary       = %q{mp3 tags as attributes for ActiveRecord}
-  spec.homepage      = "https://github.com/mcfiredrill/so_id3"
+  spec.homepage      = "https://github.com/streampusher/so_id3"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
