@@ -82,12 +82,6 @@ module SoId3
       @cache.send(:write_attribute, tag_name, text)
     end
 
-    def write_tag_to_cache_and_save tag_name, text
-      @cache.send(:write_attribute, tag_name, text)
-      @cache.send(:save!)
-      # maybe it would be desired to have this method trigger callbacks?
-    end
-
     def write_file_to_s3
       key = @mp3_filename
       puts "the key in write_file_to_s3: #{key}" # TODO use a real logger
