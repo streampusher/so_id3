@@ -36,10 +36,11 @@ describe SoId3::Tags do
         expect(cache).to receive(:write_attribute).with("year", "0")
         expect(cache).to receive(:write_attribute).with("track", "3")
         expect(cache).to receive(:write_attribute).with("length", "120")
-        expect(cache).to receive(:save!)
+        expect(cache).to receive(:save).with(validate: false)
         tags.sync_tags_from_file_to_db
       end
     end
+
     describe "sync_tags_from_db_to_file" do
       it "saves tags from the db to the file" do
         expect(cache).to receive(:read_attribute).with("artist")

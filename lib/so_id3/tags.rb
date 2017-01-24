@@ -39,7 +39,7 @@ module SoId3
         picture = @tagger.tags(@mp3_tempfile).fetch(:picture)
         @cache.send("#{@artwork_column.name}=".to_sym, StringIO.new(picture[:data]))
       end
-      @cache.send(:save!)
+      @cache.send(:save, validate: false)
     end
 
     # update_tags
