@@ -14,10 +14,11 @@ class SongWithS3 < ActiveRecord::Base
   has_tags column: :mp3, storage: :s3, artwork_column: :artwork,
            s3_credentials: { bucket: ENV['S3_BUCKET'],
                              access_key_id: ENV['S3_KEY'],
-                             secret_access_key: ENV['S3_SECRET'] }
+                             secret_access_key: ENV['S3_SECRET'],
+                             region: ENV['S3_REGION'] }
 
   def s3_credentials
-    { bucket: ENV['S3_BUCKET'], access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET'] }
+    { bucket: ENV['S3_BUCKET'], access_key_id: ENV['S3_KEY'], secret_access_key: ENV['S3_SECRET'], s3_region: ENV['S3_REGION'], region: ENV['S3_REGION'] }
   end
 
   def mp3_url

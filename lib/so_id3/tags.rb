@@ -19,6 +19,7 @@ module SoId3
     attr_accessor :cache
 
     def initialize mp3_filename, cache, storage=:filesystem, s3_credentials = {}, artwork_column = nil
+      puts s3_credentials
       @mp3_filename = mp3_filename
       @tagger = Rupeepeethree::Tagger
       @cache = cache
@@ -68,9 +69,10 @@ module SoId3
 
     def get_tempfile
       if @storage == :s3
-        @s3 = AWS::S3.new(access_key_id: @s3_credentials[:access_key_id],
-                          secret_access_key: @s3_credentials[:secret_access_key])
-        @bucket = @s3.buckets.create(@s3_credentials[:bucket])
+        puts @s3_credentials
+        @s3_client = Aws::S3::Client.new(access_key_id: @s3_credentials[:access_key_id],
+                          secret_access_key: @s3_credentials[:secret_access_key], region: @s3_credentials[:region])
+        @s3_client.create_bucket(bucket: @s3_credentials[:bucket])
         @mp3_tempfile = get_file_from_s3(@mp3_filename)
       else
         @mp3_tempfile = @mp3_filename
@@ -85,7 +87,7 @@ module SoId3
     def write_file_to_s3
       key = @mp3_filename
       puts "the key in write_file_to_s3: #{key}" # TODO use a real logger
-      @bucket.objects[key].write(file: @mp3_tempfile, acl: :public_read)
+      @s3_client.put_object(bucket: @s3_credentials[:bucket], key: key, body: File.open(@mp3_tempfile), acl: "public-read")
     end
 
     def get_artwork_file_from_s3
@@ -102,14 +104,11 @@ module SoId3
 
     def get_file_from_s3 filename
       puts "the filename in get_file_from_s3: #{filename}"
-      obj = @bucket.objects[filename]
-      t = Tempfile.new([File.basename(filename, ".*"), File.extname(filename)])
-      t.binmode
-      obj.read do |chunk|
-        t.write(chunk)
+      Tempfile.open([File.basename(filename, ".*"), File.extname(filename)]) do |t|
+        t.binmode
+	@s3_client.get_object({ bucket: @s3_credentials[:bucket], key: filename }, target: t)
+        t.path
       end
-      t.rewind
-      t.path
     end
   end
 end

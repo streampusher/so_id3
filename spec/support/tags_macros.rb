@@ -13,26 +13,28 @@ module TagsMacros
   def reset_s3_object mp3 = "spec/support/test.mp3"
     s3_credentials = { bucket: ENV['S3_BUCKET'],
                       access_key_id: ENV['S3_KEY'],
-                      secret_access_key: ENV['S3_SECRET'] }
+                      secret_access_key: ENV['S3_SECRET'],
+                      region: ENV['S3_REGION'] }
     VCR.use_cassette "reset_s3_object_#{File.basename(mp3)}" do
-      @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
-                        secret_access_key: s3_credentials[:secret_access_key])
-      @bucket = @s3.buckets.create(s3_credentials[:bucket])
+      @s3 = Aws::S3::Client.new(access_key_id: s3_credentials[:access_key_id],
+                        secret_access_key: s3_credentials[:secret_access_key], region: s3_credentials[:region])
+      @s3.create_bucket(bucket: s3_credentials[:bucket])
       key = File.basename(mp3)
-      @bucket.objects[key].write(file: mp3, acl: :public_read)
+      @s3.put_object(bucket: s3_credentials[:bucket], key: key, body: File.open(mp3), acl: "public-read")
     end
   end
 
   def reset_s3_object_in_subdir mp3 = "spec/support/test.mp3"
     s3_credentials = { bucket: ENV['S3_BUCKET'],
                       access_key_id: ENV['S3_KEY'],
-                      secret_access_key: ENV['S3_SECRET'] }
+                      secret_access_key: ENV['S3_SECRET'],
+                      region: ENV['S3_REGION'] }
     VCR.use_cassette "reset_s3_object_in_subdir_#{File.basename(mp3)}" do
-      @s3 = AWS::S3.new(access_key_id: s3_credentials[:access_key_id],
-                        secret_access_key: s3_credentials[:secret_access_key])
-      @bucket = @s3.buckets.create(s3_credentials[:bucket])
+      @s3 = Aws::S3::Client.new(access_key_id: s3_credentials[:access_key_id],
+                        secret_access_key: s3_credentials[:secret_access_key], region: s3_credentials[:region])
+      @s3.create_bucket(bucket: s3_credentials[:bucket])
       key = "subdir/test.mp3"
-      @bucket.objects[key].write(file: mp3, acl: :public_read)
+      @s3.put_object(bucket: s3_credentials[:bucket], key: key, body: File.open(mp3), acl: "public-read")
     end
   end
 

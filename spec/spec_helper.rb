@@ -1,11 +1,11 @@
 require 'dotenv'
 Dotenv.load
 require 'rspec'
-require 'vcr'
-require 'paperclip'
 require 'active_record'
 require 'active_job'
+require 'paperclip'
 require 'so_id3'
+require 'vcr'
 
 require './spec/support/tags_macros.rb'
 require './spec/support/song'
@@ -30,5 +30,9 @@ VCR.configure do |config|
 
   config.filter_sensitive_data("<S3_BUCKET>") do
     ENV.fetch 'S3_BUCKET', "x"*40
+  end
+
+  config.filter_sensitive_data("<S3_REGION>") do
+    ENV.fetch 'S3_REGION', "x"*40
   end
 end
