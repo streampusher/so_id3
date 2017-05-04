@@ -4,6 +4,6 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rupeepeethree', path: "~/src/rupeepeethree"
-gem 'paperclip'
+gem 'paperclip', "~> 5"
 gem 'dotenv'
 gem 'byebug'

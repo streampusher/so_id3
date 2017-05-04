@@ -5,7 +5,6 @@ describe SoId3 do
     ActiveRecord::Base.establish_connection(adapter: "sqlite3",
                                             database: "spec/support/so_id3.sqlite3")
     load "spec/support/schema.rb"
-    ActiveRecord::Base.raise_in_transactional_callbacks = true
     ActiveJob::Base.queue_adapter = :inline
   end
   describe "#has_tags" do
