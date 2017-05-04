@@ -1,6 +1,6 @@
 # SoId3
 
-[![Build Status](https://img.shields.io/travis/mcfiredrill/so_id3/master.svg)](https://travis-ci.org/mcfiredrill/so_id3)
+[![Build Status](https://img.shields.io/travis/streampusher/so_id3/master.svg)](https://travis-ci.org/streampusher/so_id3)
 
 associate mp3 tags with active record models
 
