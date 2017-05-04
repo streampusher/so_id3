@@ -19,7 +19,6 @@ module SoId3
     attr_accessor :cache
 
     def initialize mp3_filename, cache, storage=:filesystem, s3_credentials = {}, artwork_column = nil
-      puts s3_credentials
       @mp3_filename = mp3_filename
       @tagger = Rupeepeethree::Tagger
       @cache = cache
@@ -69,7 +68,6 @@ module SoId3
 
     def get_tempfile
       if @storage == :s3
-        puts @s3_credentials
         @s3_client = Aws::S3::Client.new(access_key_id: @s3_credentials[:access_key_id],
                           secret_access_key: @s3_credentials[:secret_access_key], region: @s3_credentials[:region])
         @s3_client.create_bucket(bucket: @s3_credentials[:bucket])
@@ -86,8 +84,7 @@ module SoId3
 
     def write_file_to_s3
       key = @mp3_filename
-      puts "the key in write_file_to_s3: #{key}" # TODO use a real logger
-      @s3_client.put_object(bucket: @s3_credentials[:bucket], key: key, body: File.open(@mp3_tempfile), acl: "public-read")
+      @s3_client.put_object(bucket: @s3_credentials[:bucket], key: key, body: File.open(@mp3_tempfile), acl: "public-read", content_type: @content_type)
     end
 
     def get_artwork_file_from_s3
@@ -106,7 +103,8 @@ module SoId3
       puts "the filename in get_file_from_s3: #{filename}"
       Tempfile.open([File.basename(filename, ".*"), File.extname(filename)]) do |t|
         t.binmode
-	@s3_client.get_object({ bucket: @s3_credentials[:bucket], key: filename }, target: t)
+	resp = @s3_client.get_object({ bucket: @s3_credentials[:bucket], key: filename }, target: t)
+        @content_type = resp.content_type
         t.path
       end
     end

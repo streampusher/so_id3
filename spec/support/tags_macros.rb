@@ -20,7 +20,7 @@ module TagsMacros
                         secret_access_key: s3_credentials[:secret_access_key], region: s3_credentials[:region])
       @s3.create_bucket(bucket: s3_credentials[:bucket])
       key = File.basename(mp3)
-      @s3.put_object(bucket: s3_credentials[:bucket], key: key, body: File.open(mp3), acl: "public-read")
+      @s3.put_object(bucket: s3_credentials[:bucket], key: key, body: File.open(mp3), acl: "public-read", content_type: "audio/mpeg")
     end
   end
 
@@ -34,7 +34,7 @@ module TagsMacros
                         secret_access_key: s3_credentials[:secret_access_key], region: s3_credentials[:region])
       @s3.create_bucket(bucket: s3_credentials[:bucket])
       key = "subdir/test.mp3"
-      @s3.put_object(bucket: s3_credentials[:bucket], key: key, body: File.open(mp3), acl: "public-read")
+      @s3.put_object(bucket: s3_credentials[:bucket], key: key, body: File.open(mp3), acl: "public-read", content_type: "audio/mpeg")
     end
   end
 
