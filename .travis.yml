@@ -1,13 +1,12 @@
+language: ruby
 addons:
   apt:
     packages:
     - libtag1-dev
-sudo: false
-language: ruby
 rvm:
-- 2.0.0
-- 2.1.0
-- 2.2.0
+- 2.4.0
+- 2.5.0
+- 2.6.0
 env:
   S3_BUCKET='so_id3_test_bucket'
   S3_SECRET='xxxxxxxxxxxxxxxxx'
