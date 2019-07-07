@@ -1,6 +1,6 @@
 require 'rupeepeethree'
 require 'open-uri'
-require 'aws-sdk'
+require 'aws-sdk-s3'
 require 'net/http'
 require 'uri'
 
