@@ -10,7 +10,7 @@ describe SoId3 do
   describe "#has_tags" do
     context "with remote files" do
       it 'works with remote files' do
-        VCR.use_cassette "song_with_remote" do
+        VCR.use_cassette "song_with_remote", preserve_exact_body_bytes: true do
           reset_tags
           reset_s3_object
           song_with_remote = SongWithS3.create(mp3: 'test.mp3')
@@ -50,7 +50,7 @@ describe SoId3 do
       it "works with files in subdirectories on s3" do
         reset_tags
         reset_s3_object_in_subdir
-        VCR.use_cassette "song_with_remote_in_subdirectory" do
+        VCR.use_cassette "song_with_remote_in_subdirectory", preserve_exact_body_bytes: true do
           song_with_remote = SongWithS3.create(mp3: 'subdir/test.mp3')
           song_with_remote.reload
           expect(song_with_remote.artist).to eq('dj nameko')
@@ -84,7 +84,7 @@ describe SoId3 do
       end
 
       it "handles filenames with escaped characters" do
-        VCR.use_cassette "song_with_remote_with_special_characters" do
+        VCR.use_cassette "song_with_remote_with_special_characters", preserve_exact_body_bytes: true do
           reset_tags
           reset_s3_object "spec/support/the cowbell wau with spaces.mp3"
           song_with_remote = SongWithS3.create(mp3: 'the cowbell wau with spaces.mp3')
