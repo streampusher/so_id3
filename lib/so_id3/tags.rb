@@ -88,16 +88,13 @@ module SoId3
     end
 
     def get_artwork_file_from_s3
-      uri = URI.parse(@artwork_column.url)
-      puts "getting the artwork file from s3: #{uri}"
-      t = Tempfile.new([File.basename(@artwork_column.path, ".*"), File.extname(@artwork_column.path)])
-      t.binmode
-      Net::HTTP.start(uri.host, uri.port) do |http|
-        resp = http.get(uri.path)
-        t.write(resp.body)
-        t.flush
+      filename = File.join(File.basename(@artwork_column.url, ".*"), File.extname(@artwork_column.url).split("?").first)
+      puts "getting the artwork file from s3: #{filename}"
+      Tempfile.new([File.basename(@artwork_column.path, ".*"), File.extname(@artwork_column.path)]) do |t|
+        t.binmode
+	resp = @s3_client.get_object({ bucket: @s3_credentials[:bucket], key: filename }, target: t)
+        t.path
       end
-      t.path
     end
 
     def get_file_from_s3 filename
