@@ -7,7 +7,10 @@ ActiveRecord::Schema.define do
     t.integer :tag_processing_status, null: false, default: 0
     t.string :another_column
 
-    t.attachment :artwork
+    t.string :artwork_file_name
+    t.integer :artwork_file_size
+    t.string :artwork_content_type
+    t.datetime :artwork_update_at
     t.timestamps null: true
   end
 
@@ -16,7 +19,10 @@ ActiveRecord::Schema.define do
     t.id3_tags
     t.integer :tag_processing_status, null: false, default: 0
 
-    t.attachment :artwork
+    t.string :artwork_file_name
+    t.integer :artwork_file_size
+    t.string :artwork_content_type
+    t.datetime :artwork_update_at
     t.timestamps null: true
   end
 end

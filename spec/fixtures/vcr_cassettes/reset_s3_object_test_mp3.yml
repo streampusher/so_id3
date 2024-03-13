@@ -2,26 +2,24 @@
 http_interactions:
 - request:
     method: put
-    uri: https://s3.amazonaws.com/<S3_BUCKET>
+    uri: https://s3.amazonaws.com/<S3_BUCKET>/
     body:
-      encoding: ASCII-8BIT
-      string: ''
+      encoding: UTF-8
+      base64_string: ''
     headers:
-      Content-Type:
-      - ''
       Accept-Encoding:
       - ''
       User-Agent:
-      - aws-sdk-ruby2/2.8.0 ruby/2.3.4 x86_64-darwin16
-      X-Amz-Date:
-      - 20170504T090055Z
+      - aws-sdk-ruby3/3.171.0 ruby/3.2.2 x86_64-linux aws-sdk-s3/1.120.1
       Host:
       - s3.amazonaws.com
+      X-Amz-Date:
+      - 20240313T012814Z
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=<S3_KEY>/20170504/<S3_REGION>/s3/aws4_request,
-        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=95e63253fdb9e0efb56ed166f538c49be444d2172de6f008dfa09205fbafdc39
+      - AWS4-HMAC-SHA256 Credential=<S3_KEY>/20240313/<S3_REGION>/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=cc4c5e773e62cfd9288b13b1ecddd0bb83cb793c6b73a7bb0cedaadbfb7c1651
       Content-Length:
       - '0'
       Accept:
@@ -32,28 +30,28 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - v9g/GpuAQLupwf95nIT56r3tsm2dMmN9CyhhYojPwFuXqJNA71KKYjR5jyTDwuRG
+      - i+12cz64KsHK79w00jf+IwRNsCFYVAr+RuAS40im/mnx/9fxCR9xI+215AFaAeXfXvQX3dYLh2Q=
       X-Amz-Request-Id:
-      - 3099B9BAFCF863A3
+      - BC72Q21D15ANBHD9
       Date:
-      - Thu, 04 May 2017 09:00:58 GMT
+      - Wed, 13 Mar 2024 01:28:15 GMT
       Location:
       - "/<S3_BUCKET>"
-      Content-Length:
-      - '0'
       Server:
       - AmazonS3
+      Content-Length:
+      - '0'
     body:
       encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Thu, 04 May 2017 09:00:57 GMT
+      base64_string: ''
+    http_version:
+  recorded_at: Wed, 13 Mar 2024 01:28:14 GMT
 - request:
     method: put
     uri: https://s3.amazonaws.com/<S3_BUCKET>/test.mp3
     body:
       encoding: UTF-8
-      string: !binary |-
+      base64_string: |
         SUQzBAAAAAISaVRSQ0sAAAACAAAAM1RJVDIAAAAMAAAAYSBjb29sIHNvbmdU
         UEUxAAAACgAAAGRqIG5hbWVrb1RBTEIAAAAEAAAAaGV5QVBJQwACCiQAAABp
         bWFnZS9wbmcAAwCJUE5HDQoaCgAAAA1JSERSAAACWAAAAlgIBgAAAL5mmNwA
@@ -2113,28 +2111,28 @@ http_interactions:
         ACAAADSAAAAEVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
         VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVU=
     headers:
-      Content-Type:
-      - audio/mpeg
       Accept-Encoding:
       - ''
       User-Agent:
-      - aws-sdk-ruby2/2.8.0 ruby/2.3.4 x86_64-darwin16
+      - aws-sdk-ruby3/3.171.0 ruby/3.2.2 x86_64-linux aws-sdk-s3/1.120.1
       X-Amz-Acl:
       - public-read
+      Content-Type:
+      - audio/mpeg
       Expect:
       - 100-continue
       Content-Md5:
       - ki8XKPLVpBA5VYVdzwgkmA==
-      X-Amz-Date:
-      - 20170504T090057Z
       Host:
       - s3.amazonaws.com
+      X-Amz-Date:
+      - 20240313T012814Z
       X-Amz-Content-Sha256:
       - 392c88da51f8fdb3462b57c558146efc1bc37bf40d5c40862ce09ff4591f7f8b
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=<S3_KEY>/20170504/<S3_REGION>/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=<S3_KEY>/20240313/<S3_REGION>/s3/aws4_request,
         SignedHeaders=content-md5;content-type;host;x-amz-acl;x-amz-content-sha256;x-amz-date,
-        Signature=aa062a7fc345e27b6ea66ec3d8078134b42cf6c17e4ebbb92f013bd8b50ec59e
+        Signature=45bbffc7f1ce48f819e1afb1f2df8dc8d75c5565d27ac87a7f644992ff3c3274
       Content-Length:
       - '92597'
       Accept:
@@ -2145,20 +2143,22 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - ljIrzj9jVjthWOGTA6Tf1435ETPxvrDRr/w6ieoQxJ7GxMtaksnNq8RUyAnskK4k
+      - lSJ9UQuhbFGjkl/U1U78nXT+On9GIYWS5y+Pi/as14+LkqM8KcYBX8hKB42/ODtHLttwwk90RMI=
       X-Amz-Request-Id:
-      - 199AF938877ECE6A
+      - BC77TB13CPK061KQ
       Date:
-      - Thu, 04 May 2017 09:00:59 GMT
+      - Wed, 13 Mar 2024 01:28:15 GMT
+      X-Amz-Server-Side-Encryption:
+      - AES256
       Etag:
       - '"922f1728f2d5a4103955855dcf082498"'
-      Content-Length:
-      - '0'
       Server:
       - AmazonS3
+      Content-Length:
+      - '0'
     body:
       encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Thu, 04 May 2017 09:00:59 GMT
+      base64_string: ''
+    http_version:
+  recorded_at: Wed, 13 Mar 2024 01:28:14 GMT
 recorded_with: VCR 3.0.3

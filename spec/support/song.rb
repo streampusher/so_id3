@@ -9,5 +9,6 @@ class Song < ActiveRecord::Base
     path: "tmp/:attachment/:id/:style/:basename.:extension"
   validates_attachment_content_type :artwork, content_type: /\Aimage\/.*\Z/
 
+  enum tag_processing_status: ['unprocessed', 'processing', 'done', 'failed']
   has_tags column: :mp3, artwork_column: :artwork
 end

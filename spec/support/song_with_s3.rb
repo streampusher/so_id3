@@ -11,6 +11,7 @@ class SongWithS3 < ActiveRecord::Base
 
   validates_attachment_content_type :artwork, content_type: /\Aimage\/.*\Z/
 
+  enum tag_processing_status: ['unprocessed', 'processing', 'done', 'failed']
   has_tags column: :mp3, storage: :s3, artwork_column: :artwork,
            s3_credentials: { bucket: ENV['S3_BUCKET'],
                              access_key_id: ENV['S3_KEY'],

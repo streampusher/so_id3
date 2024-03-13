@@ -37,7 +37,12 @@ module SoId3
       end
       if @artwork_column != nil && @tagger.tags(@mp3_tempfile).has_key?(:picture)
         picture = @tagger.tags(@mp3_tempfile).fetch(:picture)
-        @cache.send("#{@artwork_column.name}=".to_sym, StringIO.new(picture[:data]))
+        basename = File.basename(@mp3_filename, ".*")
+        ext = ".#{picture[:mime_type].split("/").last}"
+        t = Tempfile.new([basename, ext])
+        t.binmode
+        t.write(picture[:data])
+        @cache.send("#{@artwork_column.name}=".to_sym, t)
       end
       @cache.send(:save, validate: false)
     end
@@ -53,7 +58,9 @@ module SoId3
       end
       if @artwork_column != nil && @artwork_column.path.present?
         if @artwork_column.options[:storage] == :s3
-          tags[:picture] = get_artwork_file_from_s3
+          if @artwork_column.present? && @artwork_column.size > 0
+            tags[:picture] = get_artwork_file_from_s3
+          end
         else
           tags[:picture] = @artwork_column.path
         end
@@ -88,15 +95,13 @@ module SoId3
     end
 
     def get_artwork_file_from_s3
-      uri = URI.parse(@artwork_column.url)
-      t = Tempfile.new([File.basename(@artwork_column.path, ".*"), File.extname(@artwork_column.path)])
-      t.binmode
-      Net::HTTP.start(uri.host, uri.port) do |http|
-        resp = http.get(uri.path)
-        t.write(resp.body)
-        t.flush
+      puts "get_artwork_file_from_s3: #{@artwork_column.url}"
+      Tempfile.open([File.basename(@artwork_column.path, ".*"), File.extname(@artwork_column.path)]) do |t|
+        t.binmode
+        resp = @s3_client.get_object({ bucket: @s3_credentials[:bucket], key: @artwork_column.path }, target: t)
+        puts resp.inspect
+        t.path
       end
-      t.path
     end
 
     def get_file_from_s3 filename
