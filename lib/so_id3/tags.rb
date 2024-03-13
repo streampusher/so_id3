@@ -89,6 +89,7 @@ module SoId3
 
     def get_artwork_file_from_s3
       uri = URI.parse(@artwork_column.url)
+      puts "getting the artwork file from s3: #{uri}"
       t = Tempfile.new([File.basename(@artwork_column.path, ".*"), File.extname(@artwork_column.path)])
       t.binmode
       Net::HTTP.start(uri.host, uri.port) do |http|
